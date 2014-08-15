@@ -1,3 +1,10 @@
+;;; init-local.el --- local init for emacs
+
+;;; Commentary:
+;;
+
+
+;;; Code:
 (require-package 'evil)
 (require-package 'evil-leader)
 (require-package 'projectile)
@@ -39,4 +46,8 @@
           (lambda ()
             (projectile-global-mode)))
 
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 (provide 'init-local)
+
+;;; init-local.el ends here
