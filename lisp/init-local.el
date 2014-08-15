@@ -1,4 +1,6 @@
-(require 'evil-leader)
+(require-package 'evil)
+(require-package 'evil-leader)
+(require-package 'projectile)
 
 (global-evil-leader-mode)
 
