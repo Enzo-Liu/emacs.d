@@ -37,6 +37,7 @@
                             (push 'escape unread-command-events))
                            (t (setq unread-command-events (append unread-command-events
                                                                   (list evt))))))))
+(desktop-save-mode 0)
 
 (add-hook 'emacs-startup-hook
           (lambda ()
