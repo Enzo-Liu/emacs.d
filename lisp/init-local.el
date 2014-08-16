@@ -40,6 +40,14 @@
 
 (desktop-save-mode 0)
 (setq slime-contribs '(slime-repl slime-fuzzy slime-scratch))
+(auto-save-mode 0)
+(setq auto-save-default nil)
+(setq require-final-newline t)
+(setq-default make-backup-files nil)
+(setq scroll-margin 3
+       scroll-conservatively 10000)
+
+(setq visible-bell nil)
 
 (add-hook 'emacs-startup-hook
           (lambda ()
