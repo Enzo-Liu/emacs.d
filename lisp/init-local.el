@@ -37,7 +37,9 @@
                             (push 'escape unread-command-events))
                            (t (setq unread-command-events (append unread-command-events
                                                                   (list evt))))))))
+
 (desktop-save-mode 0)
+(setq slime-contribs '(slime-repl slime-fuzzy slime-scratch))
 
 (add-hook 'emacs-startup-hook
           (lambda ()
