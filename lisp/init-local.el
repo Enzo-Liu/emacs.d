@@ -9,6 +9,7 @@
 (require-package 'evil-leader)
 (require-package 'projectile)
 (require-package 'auto-complete-clang)
+(require-package 'emacs-eclim)
 
 ;;;Evil Config Begin
 (global-evil-leader-mode)
@@ -50,6 +51,19 @@
   (setq ac-sources (append '(ac-source-clang) ac-sources)))
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
 ;;;AC Config End
+;;;
+;;;Eclim Config Start
+(require 'eclim)
+(global-eclim-mode)
+(custom-set-variables
+  '(eclim-eclipse-dirs '("~/eclipse"))
+  '(eclim-executable "~/eclipse/eclim"))
+(setq help-at-pt-display-when-idle t)
+(setq help-at-pt-timer-delay 0.1)
+(help-at-pt-set-timer)
+(require 'ac-emacs-eclim-source)
+(ac-emacs-eclim-config)
+;;;Eclim Config End
 
 (desktop-save-mode 0)
 (setq slime-contribs '(slime-repl slime-fuzzy slime-scratch))
@@ -58,7 +72,7 @@
 (setq require-final-newline t)
 (setq-default make-backup-files nil)
 (setq scroll-margin 3
-       scroll-conservatively 10000)
+      scroll-conservatively 10000)
 
 (setq visible-bell nil)
 
