@@ -8,7 +8,9 @@
 (require-package 'evil)
 (require-package 'evil-leader)
 (require-package 'projectile)
+(require-package 'auto-complete-clang)
 
+;;;Evil Config Begin
 (global-evil-leader-mode)
 
 (evil-leader/set-key
@@ -20,6 +22,7 @@
 
 (evil-leader/set-leader ",")
 
+(require 'evil)
 (define-key evil-insert-state-map "j" #'cofi/maybe-exit)
 
 (evil-define-command cofi/maybe-exit ()
@@ -37,6 +40,16 @@
                             (push 'escape unread-command-events))
                            (t (setq unread-command-events (append unread-command-events
                                                                   (list evt))))))))
+;;;Evil Config End
+
+;;;AC Config Begin
+(require 'auto-complete-config)
+(require 'auto-complete-clang)
+(defun my-ac-cc-mode-setup ()
+  "Set up cc config for autocomplete."
+  (setq ac-sources (append '(ac-source-clang) ac-sources)))
+(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
+;;;AC Config End
 
 (desktop-save-mode 0)
 (setq slime-contribs '(slime-repl slime-fuzzy slime-scratch))
