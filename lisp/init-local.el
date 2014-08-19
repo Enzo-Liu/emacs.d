@@ -48,8 +48,23 @@
 (require 'auto-complete-clang)
 (defun my-ac-cc-mode-setup ()
   "Set up cc config for autocomplete."
+   (setq ac-clang-flags
+                 (mapcar (lambda (item) (concat "-I" item))
+                                         (split-string 
+                                           "
+/usr/include/c++/4.8
+/usr/include/x86_64-linux-gnu/c++/4.8
+/usr/include/c++/4.8/backward
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include
+/usr/local/include
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed
+/usr/include/x86_64-linux-gnu
+/usr/include
+")))
   (setq ac-sources (append '(ac-source-clang) ac-sources)))
-(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
+(add-hook 'c-mode-hook 'my-ac-cc-mode-setup)
+(add-hook 'c++-mode-hook 'my-ac-cc-mode-setup)
+
 ;;;AC Config End
 ;;;
 ;;;Eclim Config Start
@@ -62,7 +77,7 @@
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
 (require 'ac-emacs-eclim-source)
-(ac-emacs-eclim-config)
+(add-hook 'java-mode-hook 'ac-emacs-eclim-java-setup)
 ;;;Eclim Config End
 
 (desktop-save-mode 0)
