@@ -94,7 +94,7 @@
 (setq scroll-margin 3
       scroll-conservatively 10000)
 
-(setq visible-bell nil)
+(setq ring-bell-function 'ignore)
 
 (add-hook 'emacs-startup-hook
           (lambda ()
