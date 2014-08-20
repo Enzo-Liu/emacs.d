@@ -9,7 +9,6 @@
 (require-package 'evil-leader)
 (require-package 'projectile)
 (require-package 'auto-complete-clang)
-(require-package 'emacs-eclim)
 
 ;;;Evil Config Begin
 (global-evil-leader-mode)
@@ -73,16 +72,20 @@
 ;;;AC Config End
 ;;;
 ;;;Eclim Config Start
-(require 'eclim)
-(global-eclim-mode)
-(custom-set-variables
-  '(eclim-eclipse-dirs '("~/eclipse"))
-  '(eclim-executable "~/eclipse/eclim"))
-(setq help-at-pt-display-when-idle t)
-(setq help-at-pt-timer-delay 0.1)
-(help-at-pt-set-timer)
-(require 'ac-emacs-eclim-source)
-(add-hook 'java-mode-hook 'ac-emacs-eclim-java-setup)
+(defun setup-eclim ()
+  "Eclim setup, include auto complete,but just use this in linux."
+  (require-package 'emacs-eclim)
+  (require 'eclim)
+  (global-eclim-mode)
+  (custom-set-variables
+   '(eclim-eclipse-dirs '("~/eclipse"))
+   '(eclim-executable "~/eclipse/eclim"))
+  (setq help-at-pt-display-when-idle t)
+  (setq help-at-pt-timer-delay 0.1)
+  (help-at-pt-set-timer)
+  (require 'ac-emacs-eclim-source)
+  (add-hook 'java-mode-hook 'ac-emacs-eclim-java-setup))
+(unless *is-a-mac* (setup-eclim))
 ;;;Eclim Config End
 
 (desktop-save-mode 0)
