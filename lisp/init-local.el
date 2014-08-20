@@ -24,8 +24,13 @@
 (evil-leader/set-leader ",")
 
 (require 'evil)
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
+(define-key evil-insert-state-map (kbd "C-u")
+  (lambda ()
+    (interactive)
+    (evil-delete (point-at-bol) (point))))
 (define-key evil-insert-state-map "j" #'cofi/maybe-exit)
-
 (evil-define-command cofi/maybe-exit ()
                      :repeat change
                      (interactive)
@@ -50,7 +55,7 @@
   "Set up cc config for autocomplete."
    (setq ac-clang-flags
                  (mapcar (lambda (item) (concat "-I" item))
-                                         (split-string 
+                                         (split-string
                                            "
 /usr/include/c++/4.8
 /usr/include/x86_64-linux-gnu/c++/4.8
@@ -100,6 +105,14 @@
             (projectile-global-mode)))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(if (not (display-graphic-p))
+    (add-hook 'after-init-hook
+              (lambda ()
+                (xterm-mouse-mode 1) ; Mouse in a terminal (Use shift to paste with middle button)
+                (when (fboundp 'mwheel-install)
+                  (mwheel-install)))))
+
 
 (provide 'init-local)
 
