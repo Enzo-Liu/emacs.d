@@ -13,7 +13,13 @@ Selectively runs either `after-make-console-frame-hooks' or
                  'after-make-console-frame-hooks))))
 
 (add-hook 'after-make-frame-functions 'run-after-make-frame-hooks)
-(add-hook 'after-init-hook (lambda () (run-after-make-frame-hooks (current-frame))))
+
+(defconst sanityinc/initial-frame (selected-frame)
+  "The frame (if any) active during Emacs initialization.")
+
+(add-hook 'after-init-hook
+          (lambda () (when sanityinc/initial-frame
+                  (run-after-make-frame-hooks sanityinc/initial-frame))))
 
 
 (provide 'init-frame-hooks)
