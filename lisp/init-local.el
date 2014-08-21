@@ -109,14 +109,6 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(if (not (display-graphic-p))
-    (add-hook 'after-init-hook
-              (lambda ()
-                (xterm-mouse-mode 1) ; Mouse in a terminal (Use shift to paste with middle button)
-                (when (fboundp 'mwheel-install)
-                  (mwheel-install)))))
-
-
 (provide 'init-local)
 
 ;;; init-local.el ends here
