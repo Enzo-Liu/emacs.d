@@ -13,12 +13,21 @@
 ;;;Evil Config Begin
 (global-evil-leader-mode)
 
+(defun indent-buffer ()
+  "Use this to indent the whole file."
+  (interactive)
+  (indent-region (point-min) (point-max)))
+
 (evil-leader/set-key
   "e" 'find-file
   "b" 'switch-to-buffer
   "k" 'kill-buffer
   "w" 'save-buffer
-  "q" 'save-buffers-kill-terminal)
+  "q" 'save-buffers-kill-terminal
+  "f" 'indent-buffer
+  ",f" 'ace-jump-mode
+  ",F" 'ace-jump-char-mode
+  ",w" 'ace-jump-word-mode)
 
 (evil-leader/set-leader ",")
 
@@ -31,20 +40,20 @@
     (evil-delete (point-at-bol) (point))))
 (define-key evil-insert-state-map "j" #'cofi/maybe-exit)
 (evil-define-command cofi/maybe-exit ()
-                     :repeat change
-                     (interactive)
-                     (let ((modified (buffer-modified-p)))
-                       (insert "j")
-                       (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-                                              nil 0.5)))
-                         (cond
-                           ((null evt) (message ""))
-                           ((and (integerp evt) (char-equal evt ?j))
-                            (delete-char -1)
-                            (set-buffer-modified-p modified)
-                            (push 'escape unread-command-events))
-                           (t (setq unread-command-events (append unread-command-events
-                                                                  (list evt))))))))
+  :repeat change
+  (interactive)
+  (let ((modified (buffer-modified-p)))
+    (insert "j")
+    (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+                           nil 0.5)))
+      (cond
+       ((null evt) (message ""))
+       ((and (integerp evt) (char-equal evt ?j))
+        (delete-char -1)
+        (set-buffer-modified-p modified)
+        (push 'escape unread-command-events))
+       (t (setq unread-command-events (append unread-command-events
+                                              (list evt))))))))
 ;;;Evil Config End
 
 ;;;AC Config Begin
@@ -52,10 +61,10 @@
 (require 'auto-complete-clang)
 (defun my-ac-cc-mode-setup ()
   "Set up cc config for autocomplete."
-   (setq ac-clang-flags
-                 (mapcar (lambda (item) (concat "-I" item))
-                                         (split-string
-                                           "
+  (setq ac-clang-flags
+        (mapcar (lambda (item) (concat "-I" item))
+                (split-string
+                 "
 /usr/include/c++/4.8
 /usr/include/x86_64-linux-gnu/c++/4.8
 /usr/include/c++/4.8/backward
