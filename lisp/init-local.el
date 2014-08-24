@@ -26,6 +26,7 @@
   "q" 'save-buffers-kill-terminal
   "f" 'indent-buffer
   "t" 'org-show-todo-tree
+  "a" 'show-all
   ",f" 'ace-jump-mode
   ",F" 'ace-jump-char-mode
   ",w" 'ace-jump-word-mode)
