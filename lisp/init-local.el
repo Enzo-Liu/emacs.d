@@ -33,6 +33,11 @@
 
 (evil-leader/set-leader ",")
 
+(defun pbcopy ()
+  "Make copy function in mac os x."
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end) "pbcopy"))
+
 (require 'evil)
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
