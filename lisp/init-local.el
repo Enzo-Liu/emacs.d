@@ -17,12 +17,32 @@
   "Use this to indent the whole file."
   (interactive)
   (indent-region (point-min) (point-max)))
+(defun run ()
+  "Use this to run single file in different file type."
+  (interactive)
+  (let* ((otherCmdMap `(("cpp" . "&& ./a.out")))
+         (suffixMap `(("py" . "python") ("rb" . "ruby") ("js" . "node") ("cpp" . "g++")
+                      ("sh" . "bash") ("ml" . "ocaml") ("vbs" . "cscript")))
+         (fName (buffer-file-name))
+         (fSuffix (file-name-extension fName))
+         (progName (cdr (assoc fSuffix suffixMap)))
+         (otherCmd (cdr (assoc fSuffix otherCmdMap)))
+         (cmdStr (concat progName " \""   fName "\" " otherCmd)))
+    (when (buffer-modified-p)
+      (when (y-or-n-p "Buffer modified.  Do you want to save first?")
+        (save-buffer)))
+    (if progName
+        (progn
+          (message "Running…")
+          (shell-command cmdStr))
+      (message "No recognized program file suffix for this file."))))
 
 (evil-leader/set-key
   "e" 'find-file
   "b" 'switch-to-buffer
   "k" 'kill-buffer
   "w" 'save-buffer
+  "r" 'run
   "q" 'save-buffers-kill-terminal
   "f" 'indent-buffer
   "t" 'org-show-todo-tree
