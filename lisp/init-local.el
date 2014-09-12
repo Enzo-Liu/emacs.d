@@ -17,6 +17,7 @@
   "Use this to indent the whole file."
   (interactive)
   (indent-region (point-min) (point-max)))
+
 (defun run ()
   "Use this to run single file in different file type."
   (interactive)
@@ -43,6 +44,7 @@
   "k" 'kill-buffer
   "w" 'save-buffer
   "r" 'run
+  "u" 'uco
   "q" 'save-buffers-kill-terminal
   "f" 'indent-buffer
   "t" 'org-show-todo-tree
@@ -65,12 +67,12 @@
   (lambda ()
     (interactive)
     (evil-delete (point-at-bol) (point))))
-(define-key evil-insert-state-map "j" #'cofi/maybe-exit)
+(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
 (evil-define-command cofi/maybe-exit ()
   :repeat change
   (interactive)
   (let ((modified (buffer-modified-p)))
-    (insert "j")
+    (insert "k")
     (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
                            nil 0.5)))
       (cond
@@ -144,6 +146,33 @@
             (projectile-global-mode)))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(defun uco (name)
+  "Use this to init the ${NAME} programming for usacontext."
+  (interactive "sinput the program name you want to open or create: ")
+  (let* ((prefix `((t . "~") (nil . "~/host")))
+         (path (concat (cdr (assoc *is-a-mac* prefix)) "/Work/git/usacontext/" ))
+         (folder (concat path name "/")))
+    (unless (file-exists-p folder)
+      (make-directory folder)
+      (shell-command (concat  "cp " path  "sample/sample.cpp " folder name
+                              ".cpp && sed -i 's/#{name}/" name "/' " folder "*.cpp" )))
+    (uco-display folder name)))
+
+(defun uco-display (folder name)
+  "FOLDER: the file location.  NAME: the file name."
+  (let ((uco-cpp (concat folder name ".cpp"))
+        (uco-pro (concat folder name ".pr"))
+        (uco-in (concat folder name ".in"))
+        (uco-out (concat folder name ".out")))
+    (make-frame-command)
+    (switch-to-buffer (find-file-noselect uco-cpp))
+    (set-window-buffer (split-window-horizontally) (find-file-noselect uco-pro))
+    (windmove-right)
+    (set-window-buffer (split-window-below) (find-file-noselect uco-in))
+    (windmove-down)
+    (set-window-buffer (split-window-right) (find-file-noselect uco-out))
+    (windmove-left)))
 
 (provide 'init-local)
 
