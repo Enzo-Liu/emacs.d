@@ -151,12 +151,13 @@
   "Use this to init the ${NAME} programming for usacontext."
   (interactive "sinput the program name you want to open or create: ")
   (let* ((prefix `((t . "~") (nil . "~/host")))
+         (sedcmd `((t . "sed -i '' ") (nil . "sed -i ")))
          (path (concat (cdr (assoc *is-a-mac* prefix)) "/Work/git/usacontext/" ))
          (folder (concat path name "/")))
     (unless (file-exists-p folder)
       (make-directory folder)
-      (shell-command (concat  "cp " path  "sample/sample.cpp " folder name
-                              ".cpp && sed -i 's/#{name}/" name "/' " folder "*.cpp" )))
+      (shell-command (concat  "cp " path  "sample/sample.cpp " folder name ".cpp && "
+                              (cdr (assoc *is-a-mac* sedcmd)) "'s/#{name}/" name "/' " folder "*.cpp" )))
     (uco-display folder name)))
 
 (defun uco-display (folder name)
