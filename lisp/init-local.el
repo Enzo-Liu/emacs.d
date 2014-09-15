@@ -5,6 +5,8 @@
 
 
 ;;; Code:
+
+
 (require-package 'evil)
 (require-package 'evil-leader)
 (require-package 'projectile)
@@ -61,6 +63,10 @@
   (shell-command-on-region (region-beginning) (region-end) "pbcopy"))
 
 (require 'evil)
+(defun setupEvilOrg ()
+  "Setup TAB For Org mode in Evil."
+  (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
+(add-hook 'org-mode-hook 'setupEvilOrg)
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 (define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
 (define-key evil-insert-state-map (kbd "C-u")
