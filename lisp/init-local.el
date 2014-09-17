@@ -140,6 +140,7 @@
 (setq-default make-backup-files nil)
 (setq scroll-margin 3
       scroll-conservatively 10000)
+(setq-default major-mode 'text-mode)
 
 (setq ring-bell-function 'ignore)
 
