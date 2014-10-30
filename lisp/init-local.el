@@ -196,6 +196,16 @@
             (org-present-small)
                         (org-remove-inline-images)))
 
+;;指针不闪，不恍花眼睛。
+(blink-cursor-mode -1)
+
+;; org 自动换行
+(add-hook 'org-mode-hook
+    (lambda () (setq truncate-lines t)))
+
+;; 默认 120 列自动换行, 需要 M-x auto-fill-mode 模式下
+(setq fill-column 120)
+
 (provide 'init-local)
 
 ;;; init-local.el ends here
