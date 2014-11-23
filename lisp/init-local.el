@@ -194,14 +194,14 @@
 (add-hook 'org-present-mode-quit-hook
           (lambda ()
             (org-present-small)
-                        (org-remove-inline-images)))
+            (org-remove-inline-images)))
 
 ;;指针不闪，不恍花眼睛。
 (blink-cursor-mode -1)
 
 ;; org 自动换行
 (add-hook 'org-mode-hook
-    (lambda () (setq truncate-lines t)))
+          (lambda () (setq truncate-lines t)))
 
 ;; 默认 120 列自动换行, 需要 M-x auto-fill-mode 模式下
 (setq fill-column 120)
@@ -225,19 +225,21 @@
 (when (eq system-type 'darwin)
 
   ;; default Latin font (e.g. Consolas)
-  (set-face-attribute 'default nil :family "Consolas")
+  (set-face-attribute 'default nil :family "Sauce Code Powerline")
 
   ;; default font size (point * 10)
   ;;
   ;; WARNING!  Depending on the default font,
   ;; if the size is not supported very well, the frame will be clipped
   ;; so that the beginning of the buffer may not be visible correctly.
-  (set-face-attribute 'default nil :height 165)
+  (set-face-attribute 'default nil :height 140 :weight 'normal)
 
   ;; use specific font for Korean charset.
   ;; if you want to use different font size for specific charset,
   ;; add :size POINT-SIZE in the font-spec.
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+  (set-fontset-font t 'chinese-gb2312 (font-spec :name "Hiragino Sans GB"))
+
 
   ;; you may want to add different for other charset in this way.
   )
