@@ -148,11 +148,9 @@
 
 (add-hook 'emacs-startup-hook
           (lambda ()
-            (evil-mode)))
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (projectile-global-mode)))
+            (evil-mode)
+            (projectile-global-mode)
+            (setf enable-local-variables nil)))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
