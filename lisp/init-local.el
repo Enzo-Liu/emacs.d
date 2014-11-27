@@ -66,7 +66,7 @@
 (defun setupEvilOrg ()
   "Setup TAB For Org mode in Evil."
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
-(add-hook 'org-mode-hook 'setupEvilOrg)
+
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
@@ -101,38 +101,16 @@
   (setq ac-clang-flags
         (mapcar (lambda (item) (concat "-I" item))
                 (split-string
-                 "
-/usr/include/c++/4.8
+                 " /usr/include/c++/4.8
 /usr/include/x86_64-linux-gnu/c++/4.8
 /usr/include/c++/4.8/backward
-/usr/lib/gcc/x86_64-linux-gnu/4.8/include
-/usr/local/include
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include /usr/local/include
 /usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed
-/usr/include/x86_64-linux-gnu
-/usr/include
+/usr/include/x86_64-linux-gnu /usr/include
 ")))
   (setq ac-sources (append '(ac-source-clang) ac-sources)))
 (add-hook 'c-mode-hook 'my-ac-cc-mode-setup)
 (add-hook 'c++-mode-hook 'my-ac-cc-mode-setup)
-
-;;;AC Config End
-;;;
-;;;Eclim Config Start
-(defun setup-eclim ()
-  "Eclim setup, include auto complete,but just use this in linux."
-  (require-package 'emacs-eclim)
-  (require 'eclim)
-  (global-eclim-mode)
-  (custom-set-variables
-   '(eclim-eclipse-dirs '("~/eclipse"))
-   '(eclim-executable "~/eclipse/eclim"))
-  (setq help-at-pt-display-when-idle t)
-  (setq help-at-pt-timer-delay 0.1)
-  (help-at-pt-set-timer)
-  (require 'ac-emacs-eclim-source)
-  (add-hook 'java-mode-hook 'ac-emacs-eclim-java-setup))
-(unless *is-a-mac* (setup-eclim))
-;;;Eclim Config End
 
 (desktop-save-mode 0)
 (setq slime-contribs '(slime-repl slime-fuzzy slime-scratch))
@@ -146,8 +124,16 @@
 
 (setq ring-bell-function 'ignore)
 
+;; 默认 80 列自动换行, 需要 M-x auto-fill-mode 模式下
+(defun auto-fill ()
+  "Set for auto fill Config."
+  (setq-default auto-fill-function 'do-auto-fill)
+  (setq-default fill-column 80)
+  (setq-default comment-auto-fill-only-comments t))
+
 (add-hook 'emacs-startup-hook
           (lambda ()
+            (auto-fill)
             (evil-mode)
             (projectile-global-mode)
             (setf enable-local-variables nil)))
@@ -198,10 +184,9 @@
 
 ;; org 自动换行
 (add-hook 'org-mode-hook
-          (lambda () (setq truncate-lines t)))
-
-;; 默认 120 列自动换行, 需要 M-x auto-fill-mode 模式下
-(setq fill-column 120)
+          (lambda ()
+            (toggle-truncate-lines 0)
+            (setupEvilOrg)))
 
 (when (featurep 'ns)
   (defun ns-raise-emacs ()
