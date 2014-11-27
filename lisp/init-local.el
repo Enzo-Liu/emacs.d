@@ -1,16 +1,53 @@
-;;; init-local.el --- local init for emacs
-
+;; Filename: init-local.el
+;; Description:
+;; Author: Liu Enze
+;; Maintainer:
+;; Created: Thu Nov 27 21:46:50 2014 (+0800)
+;; Version:
+;; Package-Requires: ()
+;; Last-Updated: Thu Nov 27 22:48:35 2014 (+0800)
+;;           By: Liu Enze
+;;     Update #: 31
+;; URL:
+;; Doc URL:
+;; Keywords:
+;; Compatibility:
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;; Commentary:
 ;;
-
-
+;;
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;;; Change Log:
+;;
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or (at
+;; your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs.  If not, see <http://www.gnu.org/licenses/>.
+;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;
 ;;; Code:
-
 
 (require-package 'evil)
 (require-package 'evil-leader)
 (require-package 'projectile)
 (require-package 'auto-complete-clang)
+(require-package 'header2)
 
 ;;;Evil Config Begin
 (global-evil-leader-mode)
@@ -77,20 +114,20 @@
     (evil-delete (point-at-bol) (point))))
 (define-key evil-insert-state-map "k" #'cofi/maybe-exit)
 (evil-define-command cofi/maybe-exit ()
-  :repeat change
-  (interactive)
-  (let ((modified (buffer-modified-p)))
-    (insert "k")
-    (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-                           nil 0.5)))
-      (cond
-       ((null evt) (message ""))
-       ((and (integerp evt) (char-equal evt ?j))
-        (delete-char -1)
-        (set-buffer-modified-p modified)
-        (push 'escape unread-command-events))
-       (t (setq unread-command-events (append unread-command-events
-                                              (list evt))))))))
+                     :repeat change
+                     (interactive)
+                     (let ((modified (buffer-modified-p)))
+                       (insert "k")
+                       (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+                                              nil 0.5)))
+                         (cond
+                          ((null evt) (message ""))
+                          ((and (integerp evt) (char-equal evt ?j))
+                           (delete-char -1)
+                           (set-buffer-modified-p modified)
+                           (push 'escape unread-command-events))
+                          (t (setq unread-command-events (append unread-command-events
+                                                                 (list evt))))))))
 ;;;Evil Config End
 
 ;;;AC Config Begin
@@ -222,10 +259,21 @@
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
   (set-fontset-font t 'chinese-gb2312 (font-spec :name "Hiragino Sans GB"))
 
-
   ;; you may want to add different for other charset in this way.
   )
 
+(require 'header2)
+(autoload 'auto-update-file-header "header2")
+(add-hook 'write-file-hooks 'auto-update-file-header)
+(autoload 'auto-make-header "header2")
+(defun enzo-make-header ()
+  (auto-make-header)
+  (auto-update-file-header))
+(add-hook 'emacs-lisp-mode-hook 'enzo-make-header)
+(add-hook 'c-mode-common-hook   'enzo-make-header)
+(add-hook 'lisp-mode-hook 'enzo-make-header)
+
 (provide 'init-local)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; init-local.el ends here
