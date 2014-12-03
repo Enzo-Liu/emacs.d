@@ -1,13 +1,15 @@
-;; package --- Filename: init-local.el
+;;; package --- enzo-ac.el ---
+;;
+;; Filename: enzo-ac.el
 ;; Description:
 ;; Author: Liu Enze
 ;; Maintainer:
-;; Created: Thu Nov 27 21:46:50 2014 (+0800)
+;; Created: Wed Dec  3 10:53:06 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 11:29:58 2014 (+0800)
+;; Last-Updated: Wed Dec  3 10:59:22 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 55
+;;     Update #: 4
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -43,24 +45,28 @@
 ;;
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
+(require-package 'auto-complete-clang)
 
-(require 'enzo-evil)
-(require 'enzo-ac)
-(require 'enzo-header)
-(require 'enzo-uco)
-(require 'enzo-config)
-(require 'enzo-org)
+;;;AC Config Begin
+(require 'auto-complete-config)
+(require 'auto-complete-clang)
+(defun my-ac-cc-mode-setup ()
+  "Set up cc config for autocomplete."
+  (setq ac-clang-flags
+        (mapcar (lambda (item) (concat "-I" item))
+                (split-string
+                 " /usr/include/c++/4.8
+/usr/include/x86_64-linux-gnu/c++/4.8
+/usr/include/c++/4.8/backward
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include /usr/local/include
+/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed
+/usr/include/x86_64-linux-gnu /usr/include
+")))
+  (setq ac-sources (append '(ac-source-clang) ac-sources)))
+(add-hook 'c-mode-hook 'my-ac-cc-mode-setup)
+(add-hook 'c++-mode-hook 'my-ac-cc-mode-setup)
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (auto-fill)
-            (global-evil-leader-mode)
-            (evil-mode)
-            (projectile-global-mode)
-            (setf enable-local-variables nil)))
-
-(provide 'init-local)
+(provide 'enzo-ac)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-local.el ends here
+;;; enzo-ac.el ends here

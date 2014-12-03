@@ -1,13 +1,15 @@
-;; package --- Filename: init-local.el
+;;; package --- enzo-header.el ---
+;;
+;; Filename: enzo-header.el
 ;; Description:
 ;; Author: Liu Enze
 ;; Maintainer:
-;; Created: Thu Nov 27 21:46:50 2014 (+0800)
+;; Created: Wed Dec  3 11:00:23 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 11:29:58 2014 (+0800)
+;; Last-Updated: Wed Dec  3 11:03:15 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 55
+;;     Update #: 3
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -43,24 +45,21 @@
 ;;
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
+(require-package 'header2)
 
-(require 'enzo-evil)
-(require 'enzo-ac)
-(require 'enzo-header)
-(require 'enzo-uco)
-(require 'enzo-config)
-(require 'enzo-org)
+(require 'header2)
+(autoload 'auto-update-file-header "header2")
+(add-hook 'write-file-hooks 'auto-update-file-header)
+(autoload 'auto-make-header "header2")
+(defun enzo-make-header ()
+  "To auto insert header.  And update file header in order to
+defend from delete trailing white space."
+  (auto-make-header)
+  (auto-update-file-header))
+(add-hook 'emacs-lisp-mode-hook 'enzo-make-header)
+(add-hook 'c-mode-common-hook   'enzo-make-header)
+(add-hook 'lisp-mode-hook 'enzo-make-header)
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (auto-fill)
-            (global-evil-leader-mode)
-            (evil-mode)
-            (projectile-global-mode)
-            (setf enable-local-variables nil)))
-
-(provide 'init-local)
-
+(provide 'enzo-header)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-local.el ends here
+;;; enzo-header.el ends here

@@ -1,13 +1,15 @@
-;; package --- Filename: init-local.el
+;;; package --- enzo-org.el ---
+;;
+;; Filename: evil-org.el
 ;; Description:
 ;; Author: Liu Enze
 ;; Maintainer:
-;; Created: Thu Nov 27 21:46:50 2014 (+0800)
+;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 11:29:58 2014 (+0800)
+;; Last-Updated: Wed Dec  3 11:22:24 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 55
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -43,24 +45,19 @@
 ;;
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
+(require 'evil)
 
-(require 'enzo-evil)
-(require 'enzo-ac)
-(require 'enzo-header)
-(require 'enzo-uco)
-(require 'enzo-config)
-(require 'enzo-org)
+(defun setupEvilOrg ()
+  "Setup TAB For Org mode in Evil."
+  (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
 
-(add-hook 'emacs-startup-hook
+;; org 自动换行
+(add-hook 'org-mode-hook
           (lambda ()
-            (auto-fill)
-            (global-evil-leader-mode)
-            (evil-mode)
-            (projectile-global-mode)
-            (setf enable-local-variables nil)))
+            (toggle-truncate-lines 0)
+            (setupEvilOrg)))
 
-(provide 'init-local)
+(provide 'enzo-org)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-local.el ends here
+;;; enzo-org.el ends here
