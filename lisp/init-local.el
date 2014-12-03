@@ -1,13 +1,13 @@
-;; Filename: init-local.el
+;; package --- Filename: init-local.el
 ;; Description:
 ;; Author: Liu Enze
 ;; Maintainer:
 ;; Created: Thu Nov 27 21:46:50 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Nov 27 22:48:35 2014 (+0800)
+;; Last-Updated: Wed Dec  3 11:29:58 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 31
+;;     Update #: 55
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -43,134 +43,19 @@
 ;;
 ;;; Code:
 
-(require-package 'evil)
-(require-package 'evil-leader)
-(require-package 'projectile)
-(require-package 'auto-complete-clang)
-(require-package 'header2)
+(add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
 
-;;;Evil Config Begin
-(global-evil-leader-mode)
-
-(defun indent-buffer ()
-  "Use this to indent the whole file."
-  (interactive)
-  (indent-region (point-min) (point-max)))
-
-(defun run ()
-  "Use this to run single file in different file type."
-  (interactive)
-  (let* ((otherCmdMap `(("cpp" . "&& ./a.out")))
-         (suffixMap `(("py" . "python") ("rb" . "ruby") ("js" . "node") ("cpp" . "g++")
-                      ("sh" . "bash") ("ml" . "ocaml") ("vbs" . "cscript")))
-         (fName (buffer-file-name))
-         (fSuffix (file-name-extension fName))
-         (progName (cdr (assoc fSuffix suffixMap)))
-         (otherCmd (cdr (assoc fSuffix otherCmdMap)))
-         (cmdStr (concat progName " \""   fName "\" " otherCmd)))
-    (when (buffer-modified-p)
-      (when (y-or-n-p "Buffer modified.  Do you want to save first?")
-        (save-buffer)))
-    (if progName
-        (progn
-          (message "Running…")
-          (shell-command cmdStr))
-      (message "No recognized program file suffix for this file."))))
-
-(evil-leader/set-key
-  "e" 'find-file
-  "b" 'switch-to-buffer
-  "k" 'kill-buffer
-  "w" 'save-buffer
-  "r" 'run
-  "u" 'uco
-  "q" 'save-buffers-kill-terminal
-  "f" 'indent-buffer
-  "t" 'org-show-todo-tree
-  "a" 'show-all
-  ",f" 'ace-jump-mode
-  ",F" 'ace-jump-char-mode
-  ",w" 'ace-jump-word-mode)
-
-(evil-leader/set-leader ",")
-
-(defun pbcopy ()
-  "Make copy function in mac os x."
-  (interactive)
-  (shell-command-on-region (region-beginning) (region-end) "pbcopy"))
-
-(require 'evil)
-(defun setupEvilOrg ()
-  "Setup TAB For Org mode in Evil."
-  (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
-
-(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-visual-state-map (kbd "C-u") 'evil-scroll-up)
-(define-key evil-insert-state-map (kbd "C-u")
-  (lambda ()
-    (interactive)
-    (evil-delete (point-at-bol) (point))))
-(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
-(evil-define-command cofi/maybe-exit ()
-                     :repeat change
-                     (interactive)
-                     (let ((modified (buffer-modified-p)))
-                       (insert "k")
-                       (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-                                              nil 0.5)))
-                         (cond
-                          ((null evt) (message ""))
-                          ((and (integerp evt) (char-equal evt ?j))
-                           (delete-char -1)
-                           (set-buffer-modified-p modified)
-                           (push 'escape unread-command-events))
-                          (t (setq unread-command-events (append unread-command-events
-                                                                 (list evt))))))))
-;;;Evil Config End
-
-;;;AC Config Begin
-(require 'auto-complete-config)
-(require 'auto-complete-clang)
-(defun my-ac-cc-mode-setup ()
-  "Set up cc config for autocomplete."
-  (setq ac-clang-flags
-        (mapcar (lambda (item) (concat "-I" item))
-                (split-string
-                 " /usr/include/c++/4.8
-/usr/include/x86_64-linux-gnu/c++/4.8
-/usr/include/c++/4.8/backward
-/usr/lib/gcc/x86_64-linux-gnu/4.8/include /usr/local/include
-/usr/lib/gcc/x86_64-linux-gnu/4.8/include-fixed
-/usr/include/x86_64-linux-gnu /usr/include
-")))
-  (setq ac-sources (append '(ac-source-clang) ac-sources)))
-(add-hook 'c-mode-hook 'my-ac-cc-mode-setup)
-(add-hook 'c++-mode-hook 'my-ac-cc-mode-setup)
-
-(desktop-save-mode 0)
-(setq slime-contribs '(slime-repl slime-fuzzy slime-scratch))
-(auto-save-mode 0)
-(setq auto-save-default nil)
-(setq require-final-newline t)
-(setq-default make-backup-files nil)
-(setq scroll-margin 3
-      scroll-conservatively 10000)
-(setq-default major-mode 'text-mode)
-
-(setq ring-bell-function 'ignore)
-
-;; 默认 80 列自动换行, 需要 M-x auto-fill-mode 模式下
-(defun auto-fill ()
-  "Set for auto fill Config."
-  (setq-default auto-fill-function 'do-auto-fill)
-  (setq-default fill-column 80)
-  (setq-default comment-auto-fill-only-comments t))
+(require 'enzo-evil)
+(require 'enzo-ac)
+(require 'enzo-header)
+(require 'enzo-uco)
+(require 'enzo-config)
+(require 'enzo-org)
 
 (add-hook 'emacs-startup-hook
           (lambda ()
             (auto-fill)
+            (global-evil-leader-mode)
             (evil-mode)
             (projectile-global-mode)
             (setf enable-local-variables nil)))
