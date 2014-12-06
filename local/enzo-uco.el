@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:05:44 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 15:47:45 2014 (+0800)
+;; Last-Updated: Sat Dec  6 18:13:27 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 3
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -93,7 +93,7 @@
   "Get all unfinished project by path.  The done project list in $PATH/done/."
   (let ((done-path path))
     (mapcar #'(lambda (name) (usaco-format (concat done-path name) name :TODO))
-            (remove-if #'(lambda (name) (equal name "done")) (list-sub-directory done-path)))))
+            (cl-remove-if #'(lambda (name) (equal name "done")) (list-sub-directory done-path)))))
 
 (defun usaco-lookup ()
   "Search for exsiting usaco programs and leave an add option."
@@ -144,19 +144,33 @@
   (let* ((folder (cdr (assoc "folder" program)))
          (dest (concat folder "/../../"))
          (cmd (concat "mv " folder " " dest)))
-    (shell-command cmd)))
+    (shell-command cmd)
+    (uco-clean program)))
+
+(defun slient-kill-buffers (regexp)
+  "Kill buffers matching REGEXP without asking for confirmation."
+  (interactive "sKill buffers matching this regular expression: ")
+  (cl-flet ((kill-buffer-ask (buffer) (kill-buffer buffer)))
+    (kill-matching-buffers regexp)))
 
 (defun uco-remove(program)
   "Remove this PROGRAM."
   (let ((folder (cdr (assoc "folder" program))))
     (shell-command (concat "rm -rf " folder))))
 
+(defun uco-clean (program)
+  "Clear all the buffer of this PROGRAM and delete current frame."
+  (slient-kill-buffers (cdr (assoc "name" program)))
+  ;;(delete-frame)
+  )
+
 (defun uco-done (program)
   "Mark this PROGRAM has been done."
   (let* ((folder (cdr (assoc "folder" program)))
          (dest (concat folder "/../done/"))
          (cmd (concat "mv " folder " " dest)))
-    (shell-command cmd)))
+    (shell-command cmd)
+    (uco-clean program)))
 
 (defun uco-display (program)
   "Display for the exsiting PROGRAM."
