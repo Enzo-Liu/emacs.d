@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Dec  4 13:38:57 2014 (+0800)
+;; Last-Updated: Tue Dec  9 18:58:02 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 19
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -138,6 +138,9 @@
 (global-set-key (kbd "C-s-f") 'toggle-frame-fullscreen)
 ;; For some weird reason C-s-f only means right cmd key!
 (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
+
+(global-set-key (kbd "s-/") 'comment-or-uncomment-region)
+
 
 (provide 'enzo-config)
 
