@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:00:23 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 11:03:15 2014 (+0800)
+;; Last-Updated: Fri Dec 12 11:31:51 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 3
+;;     Update #: 6
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -56,9 +56,7 @@
 defend from delete trailing white space."
   (auto-make-header)
   (auto-update-file-header))
-(add-hook 'emacs-lisp-mode-hook 'enzo-make-header)
-(add-hook 'c-mode-common-hook   'enzo-make-header)
-(add-hook 'lisp-mode-hook 'enzo-make-header)
+(add-hook 'prog-mode-hook 'enzo-make-header)
 
 (provide 'enzo-header)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

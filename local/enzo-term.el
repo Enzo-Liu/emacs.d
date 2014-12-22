@@ -1,13 +1,15 @@
-;; package --- Filename: init-local.el
+;;; package --- Summary enzo-term.el ---
+;;
+;; Filename: enzo-term.el
 ;; Description:
 ;; Author: Liu Enze
 ;; Maintainer:
-;; Created: Thu Nov 27 21:46:50 2014 (+0800)
+;; Created: Mon Dec 22 09:38:23 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Dec 22 09:37:35 2014 (+0800)
+;; Last-Updated: Mon Dec 22 10:01:13 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 56
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -43,25 +45,25 @@
 ;;
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
+(require-package 'multi-term)
 
-(require 'enzo-evil)
-(require 'enzo-ac)
-(require 'enzo-header)
-(require 'enzo-uco)
-(require 'enzo-config)
-(require 'enzo-org)
-(require 'enzo-term)
+(autoload 'multi-term "multi-term" nil t)
+(autoload 'multi-term-next "multi-term" nil t)
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (auto-fill)
-            (global-evil-leader-mode)
-            (evil-mode)
-            (projectile-global-mode)
-            (setf enable-local-variables nil)))
+(setq multi-term-program "/usr/local/bin/zsh")   ;; use bash
+;; (setq multi-term-program "/bin/zsh") ;; or use zsh...
 
-(provide 'init-local)
+(global-set-key (kbd "C-c t") 'toggle-shell)
+(global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
+
+(defun toggle-shell ()
+  "Used for multi term toggle and focus."
+  (interactive)
+  (if (multi-term-dedicated-window-p)
+      (multi-term-dedicated-toggle)
+    (progn
+      (multi-term-dedicated-toggle)
+      (multi-term-dedicated-select))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-local.el ends here
+;;; enzo-term.el ends here
