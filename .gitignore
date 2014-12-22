@@ -34,3 +34,5 @@ site-lisp/package/
 /image-dired/
 *.eld
 /eshell
+/.cask/
+/.sx/
