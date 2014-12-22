@@ -5,9 +5,9 @@
 ;; Created: Thu Nov 27 21:46:50 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 11:29:58 2014 (+0800)
+;; Last-Updated: Mon Dec 22 09:37:35 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 55
+;;     Update #: 56
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,6 +51,7 @@
 (require 'enzo-uco)
 (require 'enzo-config)
 (require 'enzo-org)
+(require 'enzo-term)
 
 (add-hook 'emacs-startup-hook
           (lambda ()

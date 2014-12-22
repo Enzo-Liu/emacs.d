@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Tue Dec  9 18:58:02 2014 (+0800)
+;; Last-Updated: Mon Dec 22 15:15:45 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 24
+;;     Update #: 26
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -86,8 +86,8 @@
   ;; if you want to use different font size for specific charset,
   ;; add :size POINT-SIZE in the font-spec.
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-  (set-fontset-font t 'chinese-gb2312 (font-spec :name "Hiragino Sans GB"))
-
+  (set-fontset-font t 'han (font-spec :name "Hiragino Sans GB"))
+  (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
   ;; you may want to add different for other charset in this way.
   )
 
@@ -140,6 +140,9 @@
 (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
 
 (global-set-key (kbd "s-/") 'comment-or-uncomment-region)
+
+(custom-set-variables
+ '(markdown-command "/usr/local/bin/pandoc"))
 
 
 (provide 'enzo-config)

@@ -1,15 +1,15 @@
-;;; package --- enzo-header.el ---
+;;; package --- Summary enzo-term.el ---
 ;;
-;; Filename: enzo-header.el
+;; Filename: enzo-term.el
 ;; Description:
 ;; Author: Liu Enze
 ;; Maintainer:
-;; Created: Wed Dec  3 11:00:23 2014 (+0800)
+;; Created: Mon Dec 22 09:38:23 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Fri Dec 12 11:31:51 2014 (+0800)
+;; Last-Updated: Mon Dec 22 10:01:13 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 6
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -45,19 +45,25 @@
 ;;
 ;;; Code:
 
-(require-package 'header2)
+(require-package 'multi-term)
 
-(require 'header2)
-(autoload 'auto-update-file-header "header2")
-(add-hook 'write-file-hooks 'auto-update-file-header)
-(autoload 'auto-make-header "header2")
-(defun enzo-make-header ()
-  "To auto insert header.  And update file header in order to
-defend from delete trailing white space."
-  (auto-make-header)
-  (auto-update-file-header))
-(add-hook 'prog-mode-hook 'enzo-make-header)
+(autoload 'multi-term "multi-term" nil t)
+(autoload 'multi-term-next "multi-term" nil t)
 
-(provide 'enzo-header)
+(setq multi-term-program "/usr/local/bin/zsh")   ;; use bash
+;; (setq multi-term-program "/bin/zsh") ;; or use zsh...
+
+(global-set-key (kbd "C-c t") 'toggle-shell)
+(global-set-key (kbd "C-c T") 'multi-term) ;; create a new one
+
+(defun toggle-shell ()
+  "Used for multi term toggle and focus."
+  (interactive)
+  (if (multi-term-dedicated-window-p)
+      (multi-term-dedicated-toggle)
+    (progn
+      (multi-term-dedicated-toggle)
+      (multi-term-dedicated-select))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; enzo-header.el ends here
+;;; enzo-term.el ends here
