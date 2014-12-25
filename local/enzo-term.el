@@ -7,9 +7,9 @@
 ;; Created: Mon Dec 22 09:38:23 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Dec 22 10:01:13 2014 (+0800)
+;; Last-Updated: Thu Dec 25 09:57:28 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 7
+;;     Update #: 9
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,6 +47,8 @@
 
 (require-package 'multi-term)
 
+(require 'multi-term)
+
 (autoload 'multi-term "multi-term" nil t)
 (autoload 'multi-term-next "multi-term" nil t)
 
@@ -65,5 +67,6 @@
       (multi-term-dedicated-toggle)
       (multi-term-dedicated-select))))
 
+(provide 'enzo-term)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; enzo-term.el ends here
