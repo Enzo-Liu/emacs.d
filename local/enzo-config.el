@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Dec 22 15:15:45 2014 (+0800)
+;; Last-Updated: Thu Dec 25 11:20:06 2014 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 26
+;;     Update #: 39
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -72,24 +72,26 @@
 
 (setq ring-bell-function 'ignore)
 
-(when (eq system-type 'darwin)
-  ;; default Latin font (e.g. Consolas)
-  (set-face-attribute 'default nil :family "Sauce Code Powerline")
+(defun setup-font ()
+  "Set up font for os x."
+  (when (eq system-type 'darwin)
+    ;; default Latin font (e.g. Consolas)
+    (set-face-attribute 'default nil :family "Sauce Code Powerline")
 
-  ;; default font size (point * 10)
-  ;; WARNING!  Depending on the default font,
-  ;; if the size is not supported very well, the frame will be clipped
-  ;; so that the beginning of the buffer may not be visible correctly.
-  (set-face-attribute 'default nil :height 140 :weight 'normal)
+    ;; default font size (point * 10)
+    ;; WARNING!  Depending on the default font,
+    ;; if the size is not supported very well, the frame will be clipped
+    ;; so that the beginning of the buffer may not be visible correctly.
+    (set-face-attribute 'default nil :height 140 :weight 'normal)
 
-  ;; use specific font for Korean charset.
-  ;; if you want to use different font size for specific charset,
-  ;; add :size POINT-SIZE in the font-spec.
-  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-  (set-fontset-font t 'han (font-spec :name "Hiragino Sans GB"))
-  (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
-  ;; you may want to add different for other charset in this way.
-  )
+    ;; use specific font for Korean charset.
+    ;; if you want to use different font size for specific charset,
+    ;; add :size POINT-SIZE in the font-spec.
+    (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+    (set-fontset-font t 'han (font-spec :name "Hiragino Sans GB"))
+    (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
+    ;; you may want to add different for other charset in this way.
+    ))
 
 (when (featurep 'ns)
   (defun ns-raise-emacs ()
@@ -100,11 +102,9 @@
     "Raise Emacs and select the provided frame."
     (with-selected-frame frame
       (when (display-graphic-p)
+        (setup-font)
         (ns-raise-emacs))))
-
-  (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)
-
-  (when (display-graphic-p) (ns-raise-emacs)))
+  (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame))
 
 ;; 默认 80 列自动换行, 需要 M-x auto-fill-mode 模式下
 (defun auto-fill ()
