@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sat Dec 27 14:48:16 2014 (+0800)
+;; Last-Updated: Sat Dec 27 15:06:14 2014 (+0800)
 ;;           By: 王 玉
-;;     Update #: 40
+;;     Update #: 42
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -145,7 +145,8 @@
  '(markdown-command "/usr/local/bin/pandoc"))
 
 (define-globalized-minor-mode my-global-fci-mode fci-mode turn-on-fci-mode)
-(my-global-fci-mode 1)
+;; current this is not compatiable with show-trailing-whitespace
+;;(my-global-fci-mode 0)
 
 (provide 'enzo-config)
 
