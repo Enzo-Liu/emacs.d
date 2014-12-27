@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 10:46:16 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 11:25:38 2014 (+0800)
-;;           By: Liu Enze
-;;     Update #: 9
+;; Last-Updated: Sat Dec 27 14:59:03 2014 (+0800)
+;;           By: 王 玉
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -58,6 +58,7 @@
   "w" 'save-buffer
   "r" 'run
   "u" 'uco
+  "n" 'projectile-find-file
   "q" 'save-buffers-kill-terminal
   "f" 'indent-buffer
   "t" 'org-show-todo-tree

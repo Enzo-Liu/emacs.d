@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Dec 25 11:20:06 2014 (+0800)
-;;           By: Liu Enze
-;;     Update #: 39
+;; Last-Updated: Sat Dec 27 14:48:16 2014 (+0800)
+;;           By: 王 玉
+;;     Update #: 40
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -144,6 +144,8 @@
 (custom-set-variables
  '(markdown-command "/usr/local/bin/pandoc"))
 
+(define-globalized-minor-mode my-global-fci-mode fci-mode turn-on-fci-mode)
+(my-global-fci-mode 1)
 
 (provide 'enzo-config)
 
