@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sat Jan  3 10:51:55 2015 (+0800)
+;; Last-Updated: Sat Jan  3 13:27:37 2015 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 56
+;;     Update #: 64
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -148,6 +148,12 @@
 (define-globalized-minor-mode my-global-fci-mode fci-mode turn-on-fci-mode)
 ;; current this is not compatiable with show-trailing-whitespace
 ;;(my-global-fci-mode 0)
+
+(require 'flycheck)
+(defun disable-flycheck-for-erb ()
+  "Disable flycheck for erb, since it caused a lot of wrong distractions."
+  (setq-local flycheck-disabled-checkers '(eruby-erubis ruby-rubocop)))
+(add-hook 'html-erb-mode-hook 'disable-flycheck-for-erb)
 
 (provide 'enzo-config)
 
