@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 11:22:24 2014 (+0800)
+;; Last-Updated: Sat Jan  3 10:57:54 2015 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 12
+;;     Update #: 14
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -56,6 +56,18 @@
           (lambda ()
             (toggle-truncate-lines 0)
             (setupEvilOrg)))
+
+(defadvice org-html-paragraph (before org-html-paragraph-advice
+                                      (paragraph contents info) activate)
+  "Join consecutive Chinese lines into a single long line without
+unwanted space when exporting org-mode to html."
+  (let* ((origin-contents (ad-get-arg 1))
+         (fix-regexp "[[:multibyte:]]")
+         (fixed-contents
+          (replace-regexp-in-string
+           (concat
+            "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
+    (ad-set-arg 1 fixed-contents)))
 
 (provide 'enzo-org)
 
