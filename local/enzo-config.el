@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sat Jan  3 13:27:37 2015 (+0800)
+;; Last-Updated: Sat Jan  3 17:41:32 2015 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 64
+;;     Update #: 65
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -89,7 +89,7 @@
     ;; add :size POINT-SIZE in the font-spec.
     (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
-      (set-fontset-font t charset (font-spec :name "Hiragino Sans GB") nil 'prepend))
+      (set-fontset-font t charset (font-spec :name "Hiragino Sans GB")))
     (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
     ;; you may want to add different for other charset in this way.
     ))
