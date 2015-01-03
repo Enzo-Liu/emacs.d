@@ -5,11 +5,11 @@
 ;; Author: Liu Enze
 ;; Maintainer:
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
-;; Version:
+;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sat Dec 27 15:06:14 2014 (+0800)
-;;           By: 王 玉
-;;     Update #: 42
+;; Last-Updated: Sat Jan  3 10:51:55 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 56
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -88,7 +88,8 @@
     ;; if you want to use different font size for specific charset,
     ;; add :size POINT-SIZE in the font-spec.
     (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-    (set-fontset-font t 'han (font-spec :name "Hiragino Sans GB"))
+    (dolist (charset '(kana han symbol cjk-misc bopomofo))
+      (set-fontset-font t charset (font-spec :name "Hiragino Sans GB") nil 'prepend))
     (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
     ;; you may want to add different for other charset in this way.
     ))
