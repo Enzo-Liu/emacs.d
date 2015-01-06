@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 10:46:16 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sat Dec 27 14:59:03 2014 (+0800)
-;;           By: 王 玉
-;;     Update #: 10
+;; Last-Updated: Tue Jan  6 11:05:16 2015 (+0800)
+;;           By: ENZO_LIU
+;;     Update #: 11
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -57,6 +57,7 @@
   "k" 'kill-buffer
   "w" 'save-buffer
   "r" 'run
+  "y" 'browse-kill-ring
   "u" 'uco
   "n" 'projectile-find-file
   "q" 'save-buffers-kill-terminal
