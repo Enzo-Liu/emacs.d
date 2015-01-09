@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sat Jan  3 17:41:32 2015 (+0800)
+;; Last-Updated: Fri Jan  9 18:40:51 2015 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 65
+;;     Update #: 66
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -66,6 +66,7 @@
 (setq scroll-margin 3
       scroll-conservatively 10000)
 (setq-default major-mode 'text-mode)
+(setenv "TMPDIR" "/tmp")
 
 ;;指针不闪，不恍花眼睛。
 (blink-cursor-mode -1)
