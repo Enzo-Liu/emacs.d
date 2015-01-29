@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Jan  9 18:40:51 2015 (+0800)
+;; Last-Updated: Wed Jan 28 19:17:02 2015 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 66
+;;     Update #: 67
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -155,6 +155,12 @@
   "Disable flycheck for erb, since it caused a lot of wrong distractions."
   (setq-local flycheck-disabled-checkers '(eruby-erubis ruby-rubocop)))
 (add-hook 'html-erb-mode-hook 'disable-flycheck-for-erb)
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (font-lock-add-keywords nil
+                                    '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+
 
 (provide 'enzo-config)
 
