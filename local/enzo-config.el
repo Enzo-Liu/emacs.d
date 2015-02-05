@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jan 28 19:17:02 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 67
+;; Last-Updated: Thu Feb  5 10:20:24 2015 (+0800)
+;;           By: vagrant
+;;     Update #: 69
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -160,6 +160,11 @@
           (lambda ()
             (font-lock-add-keywords nil
                                     '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+
+(setq-default tab-width 4)
+;; (add-hook 'makefile-mode-hook
+;;           (lambda()
+;;             (setq tab-width 4)))
 
 
 (provide 'enzo-config)
