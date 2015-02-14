@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Thu Feb  5 10:20:24 2015 (+0800)
-;;           By: vagrant
-;;     Update #: 69
+;; Last-Updated: Sat Feb 14 10:35:29 2015 (+0800)
+;;           By: enzo-liu
+;;     Update #: 72
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -160,6 +160,10 @@
           (lambda ()
             (font-lock-add-keywords nil
                                     '(("\\<\\(FIXME\\|TODO\\|BUG\\):" 1 font-lock-warning-face t)))))
+(setf user-login-name "enzo-liu")
+
+(setq-default initial-scratch-message
+              (concat ";; Happy hacking " (or user-login-name "") "!\n\n"))
 
 (setq-default tab-width 4)
 ;; (add-hook 'makefile-mode-hook

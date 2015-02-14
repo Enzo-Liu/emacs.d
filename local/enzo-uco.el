@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:05:44 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sat Dec  6 18:13:27 2014 (+0800)
-;;           By: Liu Enze
-;;     Update #: 17
+;; Last-Updated: Wed Feb 11 09:54:02 2015 (+0800)
+;;           By: vagrant
+;;     Update #: 18
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,7 +50,7 @@
 
 (defun get-usaco-path ()
   "Get home path for usaco.  Consider in mac or linux."
-  (let* ((prefix `((t . "~") (nil . "~/host")))
+  (let* ((prefix `((t . "~") (nil . "~")))
          (path (concat (cdr (assoc *is-a-mac* prefix)) "/Work/git/usacontext/" )))
     path))
 
