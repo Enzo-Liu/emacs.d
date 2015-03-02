@@ -5,11 +5,11 @@
 ;; Author: Liu Enze
 ;; Maintainer:
 ;; Created: Mon Dec 22 09:38:23 2014 (+0800)
-;; Version:
+;; Version: 1.0.0
 ;; Package-Requires: ()
-;; Last-Updated: Thu Dec 25 09:57:28 2014 (+0800)
-;;           By: Liu Enze
-;;     Update #: 9
+;; Last-Updated: Thu Feb 26 18:03:13 2015 (+0900)
+;;           By: enzo-liu
+;;     Update #: 10
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
