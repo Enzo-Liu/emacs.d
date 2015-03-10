@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Mon Mar  2 23:25:13 2015 (+0900)
+;; Last-Updated: Tue Mar 10 10:45:50 2015 (+0900)
 ;;           By: enzo-liu
-;;     Update #: 73
+;;     Update #: 74
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -120,7 +120,8 @@
   (interactive)
   (let* ((otherCmdMap `(("cpp" . "&& ./a.out")))
          (suffixMap `(("py" . "python") ("rb" . "ruby") ("js" . "node") ("cpp" . "g++")
-                      ("sh" . "bash") ("ml" . "ocaml") ("vbs" . "cscript")))
+                      ("sh" . "bash") ("ml" . "ocaml") ("vbs" . "cscript") ("c" . "c")
+                      ("c++" . "c")))
          (fName (buffer-file-name))
          (fSuffix (file-name-extension fName))
          (progName (cdr (assoc fSuffix suffixMap)))
