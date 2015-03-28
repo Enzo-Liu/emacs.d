@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Tue Mar 10 10:45:50 2015 (+0900)
+;; Last-Updated: Sat Mar 28 11:07:42 2015 (+0900)
 ;;           By: enzo-liu
-;;     Update #: 74
+;;     Update #: 90
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,9 +73,9 @@
 
 (setq ring-bell-function 'ignore)
 
-(defun setup-font ()
-  "Set up font for os x."
-  (when (eq system-type 'darwin)
+(defun setup-font (size)
+  "Setup font for graphic display with Font SIZE and WEIGHT."
+  (when (display-graphic-p)
     ;; default Latin font (e.g. Consolas)
     (set-face-attribute 'default nil :family "Sauce Code Powerline")
 
@@ -83,7 +83,7 @@
     ;; WARNING!  Depending on the default font,
     ;; if the size is not supported very well, the frame will be clipped
     ;; so that the beginning of the buffer may not be visible correctly.
-    (set-face-attribute 'default nil :height 140 :weight 'normal)
+    (set-face-attribute 'default nil :height size :weight 'normal)
 
     ;; use specific font for Korean charset.
     ;; if you want to use different font size for specific charset,
@@ -91,9 +91,23 @@
     (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font t charset (font-spec :name "Hiragino Sans GB")))
-    (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Zen Hei" . 1.2)))
-    ;; you may want to add different for other charset in this way.
-    ))
+    (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Zen Hei" . 1.2))))
+  ;; you may want to add different for other charset in this way.
+  )
+
+(defun mac-set-font (frame)
+  (with-selected-frame frame
+    (setup-font 140)))
+
+(defun fedora-set-font (frame)
+  (with-selected-frame frame
+    (setup-font 95)))
+
+(when (eq system-type 'darwin)
+  (add-hook 'after-make-frame-functions 'mac-set-font))
+
+(when (eq system-type 'gnu/linux)
+  (add-hook 'after-make-frame-functions 'fedora-set-font))
 
 (when (featurep 'ns)
   (defun ns-raise-emacs ()
@@ -103,9 +117,8 @@
   (defun ns-raise-emacs-with-frame (frame)
     "Raise Emacs and select the provided frame."
     (with-selected-frame frame
-      (when (display-graphic-p)
-        (setup-font)
-        (ns-raise-emacs))))
+      (when (display-graphic-p) (ns-raise-emacs))))
+
   (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame))
 
 ;; 默认 80 列自动换行, 需要 M-x auto-fill-mode 模式下
