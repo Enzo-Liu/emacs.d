@@ -5,9 +5,9 @@
 ;; Created: Thu Nov 27 21:46:50 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Feb 26 18:12:39 2015 (+0900)
+;; Last-Updated: Tue Apr  7 10:06:14 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 59
+;;     Update #: 62
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -53,6 +53,8 @@
 (require 'enzo-org)
 (require 'enzo-term)
 (require 'enzo-translate)
+(if (eq system-type 'gnu/linux)
+    (require 'enzo-eclim))
 
 (add-hook 'emacs-startup-hook
           (lambda ()

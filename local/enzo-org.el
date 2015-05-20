@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sat Jan  3 10:57:54 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 14
+;; Last-Updated: Thu Apr  2 21:40:22 2015 (+0800)
+;;           By: enzo-liu
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -50,6 +50,11 @@
 (defun setupEvilOrg ()
   "Setup TAB For Org mode in Evil."
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
+
+(require-package 'ox-gfm)
+
+(eval-after-load "org"
+  '(require 'ox-md nil t))
 
 ;; org 自动换行
 (add-hook 'org-mode-hook
