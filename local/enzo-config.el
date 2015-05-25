@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sun Apr 19 10:24:22 2015 (+0800)
+;; Last-Updated: Mon May 25 18:51:24 2015 (+0900)
 ;;           By: enzo-liu
-;;     Update #: 92
+;;     Update #: 93
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -179,7 +179,16 @@
 ;; (add-hook 'makefile-mode-hook
 ;;           (lambda()
 ;;             (setq tab-width 4)))
-
+;;
+;;
+(require-package 'color-theme-solarized)
+(require 'color-theme-solarized)
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (let ((mode (if (display-graphic-p frame) 'light 'dark)))
+              (set-frame-parameter frame 'background-mode mode)
+              (set-terminal-parameter frame 'background-mode mode))
+            (enable-theme 'solarized)))
 
 (provide 'enzo-config)
 
