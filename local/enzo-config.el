@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Mon May 25 18:51:24 2015 (+0900)
-;;           By: enzo-liu
-;;     Update #: 93
+;; Last-Updated: Mon May 25 18:00:27 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 94
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -182,7 +182,6 @@
 ;;
 ;;
 (require-package 'color-theme-solarized)
-(require 'color-theme-solarized)
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (let ((mode (if (display-graphic-p frame) 'light 'dark)))
