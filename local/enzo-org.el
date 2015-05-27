@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Apr  2 21:40:22 2015 (+0800)
-;;           By: enzo-liu
-;;     Update #: 16
+;; Last-Updated: Wed May 27 11:21:42 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 22
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,6 +51,8 @@
   "Setup TAB For Org mode in Evil."
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
 
+(setq org-src-fontify-natively t)
+
 (require-package 'ox-gfm)
 
 (eval-after-load "org"
@@ -64,8 +66,7 @@
 
 (defadvice org-html-paragraph (before org-html-paragraph-advice
                                       (paragraph contents info) activate)
-  "Join consecutive Chinese lines into a single long line without
-unwanted space when exporting org-mode to html."
+  "Join consecutive Chinese lines into a single long line without unwanted space when exporting 'org-mode to html."
   (let* ((origin-contents (ad-get-arg 1))
          (fix-regexp "[[:multibyte:]]")
          (fixed-contents
