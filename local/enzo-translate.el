@@ -7,9 +7,9 @@
 ;; Created: Thu Feb 26 17:53:07 2015 (+0900)
 ;; Version: 1.0.0
 ;; Package-Requires: ()
-;; Last-Updated: Thu Feb 26 18:12:15 2015 (+0900)
-;;           By: enzo-liu
-;;     Update #: 6
+;; Last-Updated: Wed Jun 24 13:25:35 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -54,12 +54,6 @@
 (require 'chinese-word-at-point)
 ;;;###autoload
 (define-namespace google-translate-chinese-
-
-(setq google-translate-base-url
-      "http://translate.google.cn/translate_a/t")
-
-(setq google-translate-listen-url
-      "http://translate.google.cn/translate_tts")
 
 (defun -region-or-word ()
   (if (use-region-p)
