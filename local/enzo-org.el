@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed May 27 11:21:42 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 22
+;; Last-Updated: Wed Jun  3 10:00:16 2015 (+0800)
+;;           By: enzo-liu
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -61,6 +61,7 @@
 ;; org 自动换行
 (add-hook 'org-mode-hook
           (lambda ()
+            (turn-off-auto-fill)
             (toggle-truncate-lines 0)
             (setupEvilOrg)))
 
