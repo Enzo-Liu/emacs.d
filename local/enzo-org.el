@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Fri Jul  3 22:20:30 2015 (+0800)
+;; Last-Updated: Sat Jul  4 09:40:30 2015 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 44
+;;     Update #: 45
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -71,9 +71,9 @@
 \\usepackage[T1]{fontenc}
 \\usepackage{fontspec}
 \\usepackage{xeCJK}
-\\setCJKmainfont[BoldFont=HiraginoSansGB-W6, ItalicFont=STKaiti]{HiraginoSansGB-W3}
-\\setCJKsansfont[BoldFont=STHeiti]{STXihei}
-\\setCJKmonofont{STFangsong}
+\\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
+\\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
+\\setCJKmonofont{FandolFang-Regular.otf}
 \\usepackage{hyperref}
 \\usepackage{graphicx}
 \\defaultfontfeatures{Mapping=tex-text}
