@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jun  3 10:00:16 2015 (+0800)
-;;           By: enzo-liu
-;;     Update #: 23
+;; Last-Updated: Fri Jul  3 22:20:30 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 44
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -52,11 +52,45 @@
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
 
 (setq org-src-fontify-natively t)
+(setq org-export-allow-bind-keywords t)
 
 (require-package 'ox-gfm)
 
 (eval-after-load "org"
-  '(require 'ox-md nil t))
+  '(progn
+     (require 'ox-md nil t)
+     (require 'ox-latex)
+     (setq org-latex-pdf-process
+           '("xelatex -interaction nonstopmode %f"
+             "xelatex -interaction nonstopmode %f"))
+     (unless (boundp 'org-latex-classes)
+       (setq org-latex-classes nil))
+     (add-to-list 'org-latex-classes
+                  '("article"
+                    "\\documentclass[11pt,a4paper]{article}
+\\usepackage[T1]{fontenc}
+\\usepackage{fontspec}
+\\usepackage{xeCJK}
+\\setCJKmainfont[BoldFont=HiraginoSansGB-W6, ItalicFont=STKaiti]{HiraginoSansGB-W3}
+\\setCJKsansfont[BoldFont=STHeiti]{STXihei}
+\\setCJKmonofont{STFangsong}
+\\usepackage{hyperref}
+\\usepackage{graphicx}
+\\defaultfontfeatures{Mapping=tex-text}
+\\usepackage{geometry}
+\\usepackage{verbatim}
+\\geometry{a4paper, textwidth=6.5in, textheight=10in,
+            marginparsep=7pt, marginparwidth=.6in}
+\\pagestyle{empty}
+    [NO-DEFAULT-PACKAGES]
+    [NO-PACKAGES]"
+                    ("\\section{%s}" . "\\section*{%s}")
+                    ("\\subsection{%s}" . "\\subsection*{%s}")
+                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+     ))
+
 
 ;; org 自动换行
 (add-hook 'org-mode-hook
