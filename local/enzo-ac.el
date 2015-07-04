@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 10:53:06 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Dec  3 10:59:22 2014 (+0800)
-;;           By: Liu Enze
-;;     Update #: 4
+;; Last-Updated: Wed Jul  1 10:42:07 2015 (+0800)
+;;           By: enzo-liu
+;;     Update #: 5
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -65,6 +65,7 @@
   (setq ac-sources (append '(ac-source-clang) ac-sources)))
 (add-hook 'c-mode-hook 'my-ac-cc-mode-setup)
 (add-hook 'c++-mode-hook 'my-ac-cc-mode-setup)
+(global-set-key (kbd "s-.") 'auto-complete)
 
 (provide 'enzo-ac)
 
