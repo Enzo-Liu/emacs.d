@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sun Jul  5 09:02:49 2015 (+0800)
+;; Last-Updated: Sun Jul  5 12:50:45 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 70
+;;     Update #: 71
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -157,7 +157,7 @@
      (dolist (class (list *article* *book* *resume* *beamer*))
        (add-to-list 'org-latex-classes
                     class))))
-
+(setq org-confirm-babel-evaluate nil)
 (setq org-descriptive-links nil)
 
 ;; org 自动换行
