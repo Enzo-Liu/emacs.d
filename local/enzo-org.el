@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sun Jul  5 07:57:31 2015 (+0800)
+;; Last-Updated: Sun Jul  5 09:02:49 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 68
+;;     Update #: 70
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -153,6 +153,7 @@
              ("showstringspaces" "false")
              ("numbers" "left")
              ("numberstyle" "\\tiny")))
+     (require 'ox-beamer)
      (dolist (class (list *article* *book* *resume* *beamer*))
        (add-to-list 'org-latex-classes
                     class))))
