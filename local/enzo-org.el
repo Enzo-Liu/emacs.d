@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Jul  6 10:58:48 2015 (+0800)
+;; Last-Updated: Mon Jul  6 11:03:25 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 73
+;;     Update #: 74
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,6 +51,8 @@
   "Setup TAB For Org mode in Evil."
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
 
+(require 'org)
+(require 'ox)
 (setq org-src-fontify-natively t)
 (setq org-export-allow-bind-keywords t)
 
