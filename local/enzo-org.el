@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sat Jul  4 09:40:30 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 45
+;; Last-Updated: Mon Jul  6 11:03:25 2015 (+0800)
+;;           By: enzo-liu
+;;     Update #: 74
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,10 +51,84 @@
   "Setup TAB For Org mode in Evil."
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
 
+(require 'org)
+(require 'ox)
 (setq org-src-fontify-natively t)
 (setq org-export-allow-bind-keywords t)
 
 (require-package 'ox-gfm)
+
+(defvar *beamer*
+  '("beamer"
+    "\\documentclass[presentation]{beamer}"
+    ("\\section{%s}" . "\\section*{%s}")
+    ("\\subsection{%s}" . "\\subsection*{%s}")
+    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+    ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+  "Beamer org export latex config.")
+(defvar *book*
+  '("book"
+    "\\documentclass[11pt,a4paper]{article}"
+    ("\\section{%s}" . "\\section*{%s}")
+    ("\\subsection{%s}" . "\\subsection*{%s}")
+    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+    ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+  "Book org export latex config.")
+(defvar *resume*
+  '("resume"
+    "\\documentclass[11pt,a4paper]{article}
+\\usepackage[T1]{fontenc}
+\\usepackage{fontspec}
+\\usepackage{xeCJK}
+\\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
+\\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
+\\setCJKmonofont{FandolFang-Regular.otf}
+\\usepackage{xcolor}
+\\usepackage{listings}
+\\usepackage{hyperref}
+\\usepackage{graphicx}
+\\defaultfontfeatures{Mapping=tex-text}
+\\usepackage{geometry}
+\\usepackage{verbatim}
+\\geometry{a4paper, textwidth=6.5in, textheight=10in,
+            marginparsep=7pt, marginparwidth=.6in}
+\\pagestyle{empty}
+     [NO-DEFAULT-PACKAGES]
+     [NO-PACKAGES]
+"
+    ("\\section{%s}" . "\\section*{%s}")
+    ("\\subsection{%s}" . "\\subsection*{%s}")
+    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+    ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+  "Acticle org export latex config.")
+(defvar *article*
+  '("article"
+    "\\documentclass[11pt,a4paper]{article}
+\\usepackage[T1]{fontenc}
+\\usepackage{fontspec}
+\\usepackage{xeCJK}
+\\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
+\\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
+\\setCJKmonofont{FandolFang-Regular.otf}
+\\usepackage{hyperref}
+\\usepackage{graphicx}
+\\usepackage{xcolor}
+\\usepackage{listings}
+\\defaultfontfeatures{Mapping=tex-text}
+\\usepackage{geometry}
+\\usepackage{verbatim}
+\\geometry{a4paper, textwidth=6.5in, textheight=10in,
+            marginparsep=7pt, marginparwidth=.6in}
+\\pagestyle{empty} "
+    ("\\section{%s}" . "\\section*{%s}")
+    ("\\subsection{%s}" . "\\subsection*{%s}")
+    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+    ("\\paragraph{%s}" . "\\paragraph*{%s}")
+    ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
+  "Acticle org export latex config.")
 
 (eval-after-load "org"
   '(progn
@@ -65,32 +139,31 @@
              "xelatex -interaction nonstopmode %f"))
      (unless (boundp 'org-latex-classes)
        (setq org-latex-classes nil))
-     (add-to-list 'org-latex-classes
-                  '("article"
-                    "\\documentclass[11pt,a4paper]{article}
-\\usepackage[T1]{fontenc}
-\\usepackage{fontspec}
-\\usepackage{xeCJK}
-\\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
-\\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
-\\setCJKmonofont{FandolFang-Regular.otf}
-\\usepackage{hyperref}
-\\usepackage{graphicx}
-\\defaultfontfeatures{Mapping=tex-text}
-\\usepackage{geometry}
-\\usepackage{verbatim}
-\\geometry{a4paper, textwidth=6.5in, textheight=10in,
-            marginparsep=7pt, marginparwidth=.6in}
-\\pagestyle{empty}
-    [NO-DEFAULT-PACKAGES]
-    [NO-PACKAGES]"
-                    ("\\section{%s}" . "\\section*{%s}")
-                    ("\\subsection{%s}" . "\\subsection*{%s}")
-                    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                    ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                    ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-     ))
-
+     (setq org-latex-listings 'listings)
+     (setq org-latex-custom-lang-environments
+           '((emacs-lisp "common-lispcode")))
+     (setq org-latex-listings-options
+           '(("frame" "single")
+             ("backgroundcolor" "\\color[gray]{0.95}")
+             ("identifierstyle" "\\ttfamily")
+             ("keywordstyle" "\\color[rgb]{0,0,1}")
+             ("commentstyle" "\\color[rgb]{0.133,0.545,0.133}")
+             ("stringstyle" "\\color[rgb]{0.627,0.126,0.941}")
+             ("basicstyle" "\\scriptsize")
+             ("extendedchars" "true")
+             ("breaklines" "true")
+             ("prebreak" "\\raisebox{0ex}[0ex][0ex]{\\ensuremath{\\hookleftarrow}}")
+             ("columns" "fixed")
+             ("keepspaces" "true")
+             ("showstringspaces" "false")
+             ("numbers" "left")
+             ("numberstyle" "\\tiny")))
+     (require 'ox-beamer)
+     (dolist (class (list *article* *book* *resume* *beamer*))
+       (add-to-list 'org-latex-classes
+                    class))))
+(setq org-confirm-babel-evaluate nil)
+(setq org-descriptive-links nil)
 
 ;; org 自动换行
 (add-hook 'org-mode-hook
