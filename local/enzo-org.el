@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Jul  6 16:02:01 2015 (+0800)
-;;           By: enzo-liu
-;;     Update #: 78
+;; Last-Updated: Mon Jul  6 16:54:08 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 79
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -79,7 +79,6 @@
 (defvar *article*
   '("article"
     "\\documentclass[11pt,a4paper]{article}
-\\usepackage[T1]{fontenc}
 \\usepackage{fontspec}
 \\usepackage{xeCJK}
 \\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
@@ -98,7 +97,6 @@
 \\usepackage{rotating}
 \\usepackage[normalem]{ulem}
 \\usepackage{amsmath}
-\\usepackage{textcomp}
 \\usepackage{marvosym}
 \\usepackage{wasysym}
 \\usepackage{amssymb}
