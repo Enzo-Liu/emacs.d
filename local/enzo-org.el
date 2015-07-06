@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sun Jul  5 12:50:45 2015 (+0800)
+;; Last-Updated: Mon Jul  6 10:58:48 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 71
+;;     Update #: 73
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -83,6 +83,8 @@
 \\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
 \\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
 \\setCJKmonofont{FandolFang-Regular.otf}
+\\usepackage{xcolor}
+\\usepackage{listings}
 \\usepackage{hyperref}
 \\usepackage{graphicx}
 \\defaultfontfeatures{Mapping=tex-text}
@@ -111,6 +113,7 @@
 \\setCJKmonofont{FandolFang-Regular.otf}
 \\usepackage{hyperref}
 \\usepackage{graphicx}
+\\usepackage{xcolor}
 \\usepackage{listings}
 \\defaultfontfeatures{Mapping=tex-text}
 \\usepackage{geometry}
