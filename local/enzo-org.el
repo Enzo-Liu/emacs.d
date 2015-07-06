@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Jul  6 11:03:25 2015 (+0800)
+;; Last-Updated: Mon Jul  6 16:02:01 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 74
+;;     Update #: 78
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -69,41 +69,13 @@
   "Beamer org export latex config.")
 (defvar *book*
   '("book"
-    "\\documentclass[11pt,a4paper]{article}"
+    "\\documentclass{book}"
     ("\\section{%s}" . "\\section*{%s}")
     ("\\subsection{%s}" . "\\subsection*{%s}")
     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
     ("\\paragraph{%s}" . "\\paragraph*{%s}")
     ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
   "Book org export latex config.")
-(defvar *resume*
-  '("resume"
-    "\\documentclass[11pt,a4paper]{article}
-\\usepackage[T1]{fontenc}
-\\usepackage{fontspec}
-\\usepackage{xeCJK}
-\\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
-\\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
-\\setCJKmonofont{FandolFang-Regular.otf}
-\\usepackage{xcolor}
-\\usepackage{listings}
-\\usepackage{hyperref}
-\\usepackage{graphicx}
-\\defaultfontfeatures{Mapping=tex-text}
-\\usepackage{geometry}
-\\usepackage{verbatim}
-\\geometry{a4paper, textwidth=6.5in, textheight=10in,
-            marginparsep=7pt, marginparwidth=.6in}
-\\pagestyle{empty}
-     [NO-DEFAULT-PACKAGES]
-     [NO-PACKAGES]
-"
-    ("\\section{%s}" . "\\section*{%s}")
-    ("\\subsection{%s}" . "\\subsection*{%s}")
-    ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-    ("\\paragraph{%s}" . "\\paragraph*{%s}")
-    ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))
-  "Acticle org export latex config.")
 (defvar *article*
   '("article"
     "\\documentclass[11pt,a4paper]{article}
@@ -113,16 +85,31 @@
 \\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
 \\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
 \\setCJKmonofont{FandolFang-Regular.otf}
-\\usepackage{hyperref}
 \\usepackage{graphicx}
 \\usepackage{xcolor}
 \\usepackage{listings}
 \\defaultfontfeatures{Mapping=tex-text}
 \\usepackage{geometry}
 \\usepackage{verbatim}
+\\usepackage{fixltx2e}
+\\usepackage{longtable}
+\\usepackage{float}
+\\usepackage{wrapfig}
+\\usepackage{rotating}
+\\usepackage[normalem]{ulem}
+\\usepackage{amsmath}
+\\usepackage{textcomp}
+\\usepackage{marvosym}
+\\usepackage{wasysym}
+\\usepackage{amssymb}
+\\usepackage{hyperref}
 \\geometry{a4paper, textwidth=6.5in, textheight=10in,
             marginparsep=7pt, marginparwidth=.6in}
-\\pagestyle{empty} "
+\\tolerance=1000
+\\pagestyle{empty}
+     [NO-DEFAULT-PACKAGES]
+     [NO-PACKAGES]
+ "
     ("\\section{%s}" . "\\section*{%s}")
     ("\\subsection{%s}" . "\\subsection*{%s}")
     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -159,7 +146,7 @@
              ("numbers" "left")
              ("numberstyle" "\\tiny")))
      (require 'ox-beamer)
-     (dolist (class (list *article* *book* *resume* *beamer*))
+     (dolist (class (list *article* *book* *beamer*))
        (add-to-list 'org-latex-classes
                     class))))
 (setq org-confirm-babel-evaluate nil)
