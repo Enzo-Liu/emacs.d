@@ -79,7 +79,6 @@
 (defvar *article*
   '("article"
     "\\documentclass[11pt,a4paper]{article}
-\\usepackage[T1]{fontenc}
 \\usepackage{fontspec}
 \\usepackage{xeCJK}
 \\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
@@ -98,7 +97,6 @@
 \\usepackage{rotating}
 \\usepackage[normalem]{ulem}
 \\usepackage{amsmath}
-\\usepackage{textcomp}
 \\usepackage{marvosym}
 \\usepackage{wasysym}
 \\usepackage{amssymb}
