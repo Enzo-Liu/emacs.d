@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jul  8 10:00:46 2015 (+0800)
+;; Last-Updated: Wed Jul  8 14:44:29 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 96
+;;     Update #: 98
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -184,10 +184,12 @@
 (require-package 'color-theme-solarized)
 (add-hook 'after-make-frame-functions
           (lambda (frame)
-            (let ((mode (if (display-graphic-p frame) 'dark 'dark)))
+            (let ((mode (if (display-graphic-p frame) 'light 'dark)))
               (set-frame-parameter frame 'background-mode mode)
               (set-terminal-parameter frame 'background-mode mode))
             (enable-theme 'solarized)))
+
+(setq-default enable-local-variables t)
 
 (provide 'enzo-config)
 
