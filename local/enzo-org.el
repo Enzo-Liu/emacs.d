@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Jul  6 16:02:01 2015 (+0800)
+;; Last-Updated: Wed Jul  8 11:29:49 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 78
+;;     Update #: 81
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -169,6 +169,26 @@
            (concat
             "\\(" fix-regexp "\\) *\n *\\(" fix-regexp "\\)") "\\1\\2" origin-contents)))
     (ad-set-arg 1 fixed-contents)))
+
+;; ===================== here comes latex config
+(require-package 'auctex)
+(require 'tex)
+(require 'tex-buf)
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+(setq-default TeX-master nil)
+(setq-default TeX-engine 'xetex)
+(setq-default TeX-PDF-mode t)
+;; set XeTeX mode in TeX/LaTeX
+(add-hook 'LaTeX-mode-hook
+          (lambda()
+            (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+            (turn-on-reftex)
+            (setq TeX-command-default "XeLaTeX")
+            (setq TeX-save-query nil)
+            (setq TeX-show-compilation t)))
+
+;; ===================== here ends latex config
 
 (provide 'enzo-org)
 
