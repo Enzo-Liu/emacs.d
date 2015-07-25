@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jul  8 11:29:49 2015 (+0800)
+;; Last-Updated: Sat Jul 25 08:59:51 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 81
+;;     Update #: 92
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -60,7 +60,34 @@
 
 (defvar *beamer*
   '("beamer"
-    "\\documentclass[presentation]{beamer}"
+    "\\documentclass[presentation]{beamer}
+\\usepackage{fontspec}
+\\usepackage{xeCJK}
+\\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
+\\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
+\\setCJKmonofont{FandolFang-Regular.otf}
+\\usepackage{graphicx}
+\\usepackage{xcolor}
+\\usepackage{listings}
+\\defaultfontfeatures{Mapping=tex-text}
+\\usepackage{geometry}
+\\usepackage{verbatim}
+\\usepackage{fixltx2e}
+\\usepackage{longtable}
+\\usepackage{float}
+\\usepackage{wrapfig}
+\\usepackage{rotating}
+\\usepackage[normalem]{ulem}
+\\usepackage{amsmath}
+\\usepackage{marvosym}
+\\usepackage{wasysym}
+\\usepackage{amssymb}
+\\usepackage{hyperref}
+\\tolerance=1000
+     [NO-DEFAULT-PACKAGES]
+     [PACKAGES]
+     [EXTRA]
+"
     ("\\section{%s}" . "\\section*{%s}")
     ("\\subsection{%s}" . "\\subsection*{%s}")
     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
