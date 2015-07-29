@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sat Jul 25 08:59:51 2015 (+0800)
+;; Last-Updated: Sun Jul 26 06:58:37 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 92
+;;     Update #: 94
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -61,7 +61,7 @@
 (defvar *beamer*
   '("beamer"
     "\\documentclass[presentation]{beamer}
-\\usepackage{fontspec}
+\\usepackage[no-math]{fontspec}
 \\usepackage{xeCJK}
 \\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
 \\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
@@ -175,6 +175,9 @@
        (add-to-list 'org-latex-classes
                     class))))
 (setq org-confirm-babel-evaluate nil)
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((lisp . t)))
 (setq org-descriptive-links nil)
 
 ;; org 自动换行
