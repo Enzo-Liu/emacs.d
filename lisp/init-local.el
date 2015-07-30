@@ -5,9 +5,9 @@
 ;; Created: Thu Nov 27 21:46:50 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Tue Apr  7 10:06:14 2015 (+0800)
+;; Last-Updated: Wed Jul 29 21:18:23 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 62
+;;     Update #: 63
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -62,7 +62,7 @@
             (global-evil-leader-mode)
             (evil-mode)
             (projectile-global-mode)
-            (setf enable-local-variables nil)))
+            (setf enable-local-variables :safe)))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 

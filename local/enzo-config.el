@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jul 29 09:59:02 2015 (+0800)
+;; Last-Updated: Wed Jul 29 21:18:42 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 102
+;;     Update #: 103
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -188,8 +188,6 @@
               (set-frame-parameter frame 'background-mode mode)
               (set-terminal-parameter frame 'background-mode mode))
             (enable-theme 'solarized)))
-
-(setq-default enable-local-variables t)
 
 (provide 'enzo-config)
 
