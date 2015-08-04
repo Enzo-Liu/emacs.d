@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Tue Jul 14 09:27:38 2015 (+0800)
+;; Last-Updated: Wed Jul 29 21:18:42 2015 (+0800)
 ;;           By: enzo-liu
-;;     Update #: 99
+;;     Update #: 103
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -91,7 +91,7 @@
     (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font t charset (font-spec :name "Hiragino Sans GB")))
-    (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Zen Hei" . 1.2))))
+    (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Micro Hei Mono" . 1.3) ("WenQuanYi Zen Hei" . 1.2))))
   ;; you may want to add different for other charset in this way.
   )
 
@@ -188,8 +188,6 @@
               (set-frame-parameter frame 'background-mode mode)
               (set-terminal-parameter frame 'background-mode mode))
             (enable-theme 'solarized)))
-
-(setq-default enable-local-variables t)
 
 (provide 'enzo-config)
 
