@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jul 29 21:18:42 2015 (+0800)
-;;           By: enzo-liu
-;;     Update #: 103
+;; Last-Updated: Wed Aug 12 07:09:12 2015 (+0800)
+;;           By: enzo liu
+;;     Update #: 117
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -73,7 +73,7 @@
 
 (setq ring-bell-function 'ignore)
 
-(defun setup-font (size)
+(defun setup-font (size font ratio)
   "Setup font for graphic display with Font SIZE and WEIGHT."
   (when (display-graphic-p)
     ;; default Latin font (e.g. Consolas)
@@ -90,36 +90,37 @@
     ;; add :size POINT-SIZE in the font-spec.
     (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
-      (set-fontset-font t charset (font-spec :name "Hiragino Sans GB")))
-    (setq face-font-rescale-alist '(("Hiragino Sans GB" . 1.2) ("WenQuanYi Micro Hei Mono" . 1.3) ("WenQuanYi Zen Hei" . 1.2))))
+      (set-fontset-font t charset (font-spec :name font)))
+    (setq face-font-rescale-alist `((,font . ,ratio) ("文泉驿正黑" . 1.3))))
   ;; you may want to add different for other charset in this way.
   )
 
 (defun mac-set-font (frame)
   (with-selected-frame frame
-    (setup-font 140)))
+    (setup-font 140  "Hiragino Sans GB" 1.2)))
 
 (defun fedora-set-font (frame)
   (with-selected-frame frame
-    (setup-font 95)))
+    (setup-font 95 "WenQuanYi Zen Hei" 1.3)))
 
 (when (eq system-type 'darwin)
+  (when (featurep 'ns)
+    (defun ns-raise-emacs ()
+      "Raise Emacs."
+      (ns-do-applescript "tell application \"Emacs\" to activate"))
+
+    (defun ns-raise-emacs-with-frame (frame)
+      "Raise Emacs and select the provided frame."
+      (with-selected-frame frame
+        (when (display-graphic-p) (ns-raise-emacs))))
+
+    (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame))
   (add-hook 'after-make-frame-functions 'mac-set-font))
 
 (when (eq system-type 'gnu/linux)
   (add-hook 'after-make-frame-functions 'fedora-set-font))
 
-(when (featurep 'ns)
-  (defun ns-raise-emacs ()
-    "Raise Emacs."
-    (ns-do-applescript "tell application \"Emacs\" to activate"))
 
-  (defun ns-raise-emacs-with-frame (frame)
-    "Raise Emacs and select the provided frame."
-    (with-selected-frame frame
-      (when (display-graphic-p) (ns-raise-emacs))))
-
-  (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame))
 
 ;; 默认 80 列自动换行, 需要 M-x auto-fill-mode 模式下
 (defun auto-fill ()
