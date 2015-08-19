@@ -42,3 +42,5 @@ site-lisp/package/
 /recentf
 /viper
 *.eld
+abbrev_defs
+eww-bookmarks
