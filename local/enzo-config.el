@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Tue Aug 18 13:05:57 2015 (+0800)
-;;           By: enzo
-;;     Update #: 121
+;; Last-Updated: Sat Aug 22 19:19:29 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 125
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -182,13 +182,21 @@
 ;;             (setq tab-width 4)))
 ;;
 ;;
-(require-package 'color-theme-solarized)
-(add-hook 'after-make-frame-functions
-          (lambda (frame)
-            (let ((mode (if (display-graphic-p frame) 'dark 'light)))
-              (set-frame-parameter frame 'background-mode mode)
-              (set-terminal-parameter frame 'background-mode mode))
-            (enable-theme 'solarized)))
+;;(require-package 'color-theme-solarized)
+;; (add-hook 'after-make-frame-functions
+;;           (lambda (frame)
+;;             (let ((mode (if (display-graphic-p frame) 'dark 'light)))
+;;               (set-frame-parameter frame 'background-mode mode)
+;;               (set-terminal-parameter frame 'background-mode mode))
+;;             (enable-theme 'solarized)))
+
+;; dirty patch
+(setq shell-file-name "/bin/bash")
+
+(add-hook 'after-init-hook
+          (lambda ()
+            (exec-path-from-shell-initialize)))
+
 
 (provide 'enzo-config)
 
