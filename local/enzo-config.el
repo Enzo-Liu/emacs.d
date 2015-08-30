@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sat Aug 22 19:19:29 2015 (+0800)
+;; Last-Updated: Sun Aug 30 22:04:23 2015 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 125
+;;     Update #: 130
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -190,12 +190,26 @@
 ;;               (set-terminal-parameter frame 'background-mode mode))
 ;;             (enable-theme 'solarized)))
 
-;; dirty patch
-(setq shell-file-name "/bin/bash")
-
+(require 'rinari)
 (add-hook 'after-init-hook
           (lambda ()
-            (exec-path-from-shell-initialize)))
+            (exec-path-from-shell-initialize)
+            (setq ruby-compilation-executable (executable-find "ruby"))))
+
+(require-package 'rvm)
+(require 'rvm)
+(rvm-use-default)
+
+(setq-default flycheck-emacs-lisp-load-path 'inherit)
+
+
+(require-package 'yasnippet)
+(require 'yasnippet)
+(yas-global-mode)
+
+(require-package 'haskell-snippets)
+(require 'haskell-snippets)
+
 
 
 (provide 'enzo-config)

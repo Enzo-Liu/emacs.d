@@ -5,9 +5,9 @@
 ;; Created: Thu Nov 27 21:46:50 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jul 29 21:18:23 2015 (+0800)
-;;           By: enzo-liu
-;;     Update #: 63
+;; Last-Updated: Sat Aug 29 23:58:16 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 64
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,6 +47,7 @@
 
 (require 'enzo-evil)
 (require 'enzo-ac)
+(require 'enzo-eclim)
 (require 'enzo-header)
 (require 'enzo-uco)
 (require 'enzo-config)
