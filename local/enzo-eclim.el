@@ -16,12 +16,12 @@
             ;; regular auto-complete initialization
             (require 'auto-complete-config)
             (ac-config-default)
-            (setq ac-sources '(ac-source-emacs-eclim))
+            (setq-local ac-sources '(ac-source-emacs-eclim))
             ;; add the emacs-eclim source
             (require 'ac-emacs-eclim-source)
             (ac-emacs-eclim-config)
-            (setq-default ac-auto-start t)
-            (setq-default ac-delay 1)
+            (setq-local ac-auto-start t)
+            (setq-local ac-delay 1)
             (eclim-mode t)
             (setq c-basic-offset 4)))
 

@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sun Aug 30 22:04:23 2015 (+0800)
+;; Last-Updated: Mon Sep  7 10:51:36 2015 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 130
+;;     Update #: 135
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -94,6 +94,10 @@
     (setq face-font-rescale-alist `((,font . ,ratio) ("文泉驿正黑" . 1.3))))
   ;; you may want to add different for other charset in this way.
   )
+
+(defun customize-font-size (size)
+  "Set the default font SIZE for frame."
+  (set-face-attribute 'default nil :height size :weight 'normal))
 
 (defun mac-set-font (frame)
   (with-selected-frame frame
@@ -182,13 +186,13 @@
 ;;             (setq tab-width 4)))
 ;;
 ;;
-;;(require-package 'color-theme-solarized)
-;; (add-hook 'after-make-frame-functions
-;;           (lambda (frame)
-;;             (let ((mode (if (display-graphic-p frame) 'dark 'light)))
-;;               (set-frame-parameter frame 'background-mode mode)
-;;               (set-terminal-parameter frame 'background-mode mode))
-;;             (enable-theme 'solarized)))
+(require-package 'color-theme-solarized)
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (let ((mode (if (display-graphic-p frame) 'light 'light)))
+              (set-frame-parameter frame 'background-mode mode)
+              (set-terminal-parameter frame 'background-mode mode))
+            (enable-theme 'solarized)))
 
 (require 'rinari)
 (add-hook 'after-init-hook
@@ -206,10 +210,13 @@
 (require-package 'yasnippet)
 (require 'yasnippet)
 (yas-global-mode)
+(setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
 
 (require-package 'haskell-snippets)
 (require 'haskell-snippets)
 
+(add-hook 'prog-mode-hook (lambda ()
+                            (turn-off-auto-fill)))
 
 
 (provide 'enzo-config)

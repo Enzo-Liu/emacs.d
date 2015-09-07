@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:05:44 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Feb 11 09:54:02 2015 (+0800)
-;;           By: vagrant
-;;     Update #: 18
+;; Last-Updated: Tue Sep  1 15:43:21 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 19
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,7 +51,7 @@
 (defun get-usaco-path ()
   "Get home path for usaco.  Consider in mac or linux."
   (let* ((prefix `((t . "~") (nil . "~")))
-         (path (concat (cdr (assoc *is-a-mac* prefix)) "/Work/git/usacontext/" )))
+         (path (concat (cdr (assoc *is-a-mac* prefix)) "/work/usacontext/" )))
     path))
 
 (defun get-folder-last-modify-date (folder)
