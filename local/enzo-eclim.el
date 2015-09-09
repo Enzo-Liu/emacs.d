@@ -2,10 +2,15 @@
 (require 'eclim)
 (require 'eclimd)
 
-(custom-set-variables
- '(eclim-eclipse-dirs '("/Users/liuenze/work_soft/Eclipse.app/Contents/Eclipse"))
- '(eclim-executable "/Users/liuenze/work_soft/Eclipse.app/Contents/Eclipse/eclim")
- '(eclimd-executable "/Users/liuenze/work_soft/Eclipse.app/Contents/Eclipse/eclimd"))
+(if (eq system-type 'darwin)
+    (custom-set-variables
+     '(eclim-eclipse-dirs '("/Users/liuenze/work_soft/Eclipse.app/Contents/Eclipse"))
+     '(eclim-executable "/Users/liuenze/work_soft/Eclipse.app/Contents/Eclipse/eclim")
+     '(eclimd-executable "/Users/liuenze/work_soft/Eclipse.app/Contents/Eclipse/eclimd"))
+  (custom-set-variables
+   '(eclim-eclipse-dirs '("~/work_soft/eclipse"))
+   '(eclim-executable "~/work_soft/eclipse/eclim")
+   '(eclimd-executable "~/work_soft/eclipse/eclim/eclimd")))
 
 ;; (require-package 'ensime)
 ;; (require-package 'sbt-mode)

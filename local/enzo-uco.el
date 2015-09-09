@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:05:44 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Tue Sep  1 15:43:21 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 19
+;; Last-Updated: Thu Sep 10 06:49:20 2015 (+0800)
+;;           By: Enze Liu
+;;     Update #: 20
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,6 +47,7 @@
 (require-package 'helm)
 
 (require 'helm)
+(require 'helm-config)
 
 (defun get-usaco-path ()
   "Get home path for usaco.  Consider in mac or linux."
