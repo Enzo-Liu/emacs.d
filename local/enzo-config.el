@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Mon Sep  7 10:51:36 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 135
+;; Last-Updated: Thu Sep 10 07:03:54 2015 (+0800)
+;;           By: Enze Liu
+;;     Update #: 136
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -44,8 +44,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
-
-(require-package 'projectile)
 
 (defun indent-buffer ()
   "Use this to indent the whole file."

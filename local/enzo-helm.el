@@ -1,10 +1,16 @@
 (require 'helm-config)
 ;;; Enable Modes (This is loading nearly everything).
 ;;
+(require 'helm)
+
 (helm-mode 1)
 (helm-adaptative-mode 1)
 ;; (helm-autoresize-mode 1)
 (helm-push-mark-mode 1)
+
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
 
 ;;; Helm-command-map
 ;;
@@ -47,5 +53,64 @@
 
 ;; Shell bindings
 (define-key shell-mode-map (kbd "M-p")               'helm-comint-input-ring) ; shell history.
+
+;;; Helm-variables
+;;
+;;
+(setq helm-net-prefer-curl                       t
+      helm-kill-ring-threshold                   1
+      helm-raise-command                         "wmctrl -xa %s"
+      helm-scroll-amount                         4
+      helm-idle-delay                            0.01
+      helm-input-idle-delay                      0.01
+      helm-ff-search-library-in-sexp             t
+      helm-default-external-file-browser         "thunar"
+      helm-pdfgrep-default-read-command          "evince --page-label=%p '%f'"
+      helm-ff-auto-update-initial-value          t
+      helm-grep-default-command                  "ack-grep -Hn --smart-case --no-group %e %p %f"
+      helm-grep-default-recurse-command          "ack-grep -H --smart-case --no-group %e %p %f"
+      helm-reuse-last-window-split-state         t
+      helm-always-two-windows                    t
+      helm-buffers-favorite-modes                (append helm-buffers-favorite-modes
+                                                         '(picture-mode artist-mode))
+      helm-ls-git-status-command                 'magit-status-internal
+      helm-M-x-requires-pattern                  0
+      helm-dabbrev-cycle-threshold               5
+      helm-surfraw-duckduckgo-url                "https://duckduckgo.com/?q=%s&ke=-1&kf=fw&kl=fr-fr&kr=b&k1=-1&k4=-1"
+      helm-boring-file-regexp-list               '("\\.git$" "\\.hg$" "\\.svn$" "\\.CVS$" "\\._darcs$" "\\.la$" "\\.o$" "\\.i$")
+      helm-buffer-skip-remote-checking           t
+      helm-apropos-fuzzy-match                   t
+      helm-M-x-fuzzy-match                       t
+      helm-lisp-fuzzy-completion                 t
+      helm-completion-in-region-fuzzy-match      t
+      helm-move-to-line-cycle-in-source          t
+      ido-use-virtual-buffers                    t             ; Needed in helm-buffers-list
+      helm-tramp-verbose                         6
+      helm-buffers-fuzzy-matching                t
+      helm-locate-command                        "locate %s -e -A --regex %s"
+      helm-org-headings-fontify                  t
+      helm-autoresize-max-height                 80 ; it is %.
+      helm-autoresize-min-height                 20 ; it is %.
+      helm-buffers-to-resize-on-pa               '("*helm apropos*" "*helm ack-grep*"
+                                                   "*helm grep*" "*helm occur*"
+                                                   "*helm multi occur*" "*helm git-grep*"
+                                                   "*helm imenu*" "*helm imenu all*"
+                                                   "*helm gid*" "*helm semantic/imenu*")
+      fit-window-to-buffer-horizontally          1
+      helm-open-github-closed-issue-since        7
+      helm-search-suggest-action-wikipedia-url
+      "https://wikipedia.org/wiki/Special:Search?search=%s"
+      helm-wikipedia-suggest-url
+      "https://wikipedia.org/w/api.php?action=opensearch&search="
+      helm-wikipedia-summary-url
+      "https://wikipedia.org/w/api.php?action=parse&format=json&prop=text&section=0&page=")
+
+
+;;; fuzzy match config
+(setq helm-M-x-fuzzy-match t)
+(setq helm-buffers-fuzzy-matching t
+      helm-recentf-fuzzy-match    t)
+(setq helm-semantic-fuzzy-match t
+      helm-imenu-fuzzy-match    t)
 
 (provide 'enzo-helm)

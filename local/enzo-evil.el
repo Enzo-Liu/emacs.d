@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 10:46:16 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Tue Jan  6 11:05:16 2015 (+0800)
-;;           By: ENZO_LIU
-;;     Update #: 11
+;; Last-Updated: Thu Sep 10 06:59:56 2015 (+0800)
+;;           By: Enze Liu
+;;     Update #: 12
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -53,7 +53,7 @@
 
 (evil-leader/set-key
   "e" 'find-file
-  "b" 'switch-to-buffer
+  "b" 'helm-buffers-list
   "k" 'kill-buffer
   "w" 'save-buffer
   "r" 'run
