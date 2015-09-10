@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Thu Sep 10 07:03:54 2015 (+0800)
+;; Last-Updated: Thu Sep 10 14:34:48 2015 (+0800)
 ;;           By: Enze Liu
-;;     Update #: 136
+;;     Update #: 140
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -89,7 +89,7 @@
     (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
     (dolist (charset '(kana han symbol cjk-misc bopomofo))
       (set-fontset-font t charset (font-spec :name font)))
-    (setq face-font-rescale-alist `((,font . ,ratio) ("文泉驿正黑" . 1.3))))
+    (setq face-font-rescale-alist `((,font . ,ratio) ("文泉驿正黑" . 1.2))))
   ;; you may want to add different for other charset in this way.
   )
 
@@ -103,7 +103,8 @@
 
 (defun fedora-set-font (frame)
   (with-selected-frame frame
-    (setup-font 95 "WenQuanYi Zen Hei" 1.3)))
+    ;;; (95 1.3)
+    (setup-font 130 "WenQuanYi Zen Hei" 1.2)))
 
 (when (eq system-type 'darwin)
   (when (featurep 'ns)
