@@ -15,6 +15,13 @@
    '(eclimd-default-workspace "~/workspace")))
 (setq eclimd-wait-for-process nil)
 
+
+(require-package 'ag)
+(require 'ag)
+(defun enzo-projectile-find-todo ()
+  (interactive)
+  (projectile-ag "TODO:"))
+
 (require-package 'hydra)
 
 (defhydra hydra-eclim (:color teal
@@ -27,7 +34,7 @@ Eclim:
   _d_: Show Doc             _i_: Implement (Override)          _p_: Show Problems
   _g_: Make getter/setter  _fd_: Find Declarations             _c_: Show Corrections
   _o_: Organize Imports    _fr_: Find References               _r_: Buffer Refresh
-  _h_: Hierarchy            _R_: Refactor
+  _h_: Hierarchy            _R_: Refactor                      _t_: Find Todo
 
 Project                            Android
 ─────────────────────────────────────────────────────────
@@ -47,6 +54,7 @@ _k_: Import Proj            _e_: Start Emulator
   ("p"   eclim-problems)
   ("c"   eclim-problems-correct)
   ("r"   eclim-problems-buffer-refresh)
+  ("t"   enzo-projectile-find-todo)
   ("j"   eclim-project-goto)
   ("b"   eclim-project-create)
   ("k"   eclim-project-import)
