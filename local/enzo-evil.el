@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 10:46:16 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Sep 10 06:59:56 2015 (+0800)
+;; Last-Updated: Mon Sep 14 18:56:11 2015 (+0800)
 ;;           By: Enze Liu
-;;     Update #: 12
+;;     Update #: 13
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -59,7 +59,7 @@
   "r" 'run
   "y" 'browse-kill-ring
   "u" 'uco
-  "n" 'projectile-find-file
+  "n" 'helm-projectile-find-file
   "q" 'save-buffers-kill-terminal
   "f" 'indent-buffer
   "t" 'org-show-todo-tree
