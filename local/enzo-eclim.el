@@ -35,6 +35,7 @@ Eclim:
   _g_: Make getter/setter  _fd_: Find Declarations             _c_: Show Corrections
   _o_: Organize Imports    _fr_: Find References               _r_: Buffer Refresh
   _h_: Hierarchy            _R_: Refactor                      _t_: Find Todo
+  _C_: Compile
 
 Project                            Android
 ─────────────────────────────────────────────────────────
@@ -55,6 +56,9 @@ _k_: Import Proj            _e_: Start Emulator
   ("c"   eclim-problems-correct)
   ("r"   eclim-problems-buffer-refresh)
   ("t"   enzo-projectile-find-todo)
+  ("C"   (lambda () (interactive)
+           (let ((projectile-project-compilation-cmd "mvn clean install"))
+             (projectile-compile-project nil))))
   ("j"   eclim-project-goto)
   ("b"   eclim-project-create)
   ("k"   eclim-project-import)
