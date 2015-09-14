@@ -9,8 +9,9 @@
 (helm-push-mark-mode 1)
 
 (require 'projectile)
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
+(require-package 'helm-projectile)
+(require 'helm-projectile)
+(helm-projectile-on)
 
 ;;; Helm-command-map
 ;;
