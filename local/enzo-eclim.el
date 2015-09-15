@@ -23,7 +23,7 @@
   (projectile-ag "TODO:"))
 
 (require-package 'hydra)
-
+(require 'hydra)
 (defhydra hydra-eclim (:color teal
                               :hint nil)
   "
