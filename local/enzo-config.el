@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Thu Sep 10 14:34:48 2015 (+0800)
-;;           By: Enze Liu
-;;     Update #: 140
+;; Last-Updated: Tue Sep 15 12:00:03 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 146
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -210,6 +210,10 @@
 (require 'yasnippet)
 (yas-global-mode)
 (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
+
+(require-package 'powerline)
+(require 'powerline)
+(powerline-center-evil-theme)
 
 (require-package 'haskell-snippets)
 (require 'haskell-snippets)
