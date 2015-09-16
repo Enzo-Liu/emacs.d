@@ -45,26 +45,7 @@
 
 (add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
 
-(require 'enzo-evil)
-(require 'enzo-ac)
-(require 'enzo-eclim)
-(require 'enzo-helm)
-(require 'enzo-header)
-(require 'enzo-uco)
-(require 'enzo-config)
-(require 'enzo-org)
-(require 'enzo-term)
-(require 'enzo-translate)
-(if (eq system-type 'gnu/linux)
-    (require 'enzo-eclim))
-
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (auto-fill)
-            (global-evil-leader-mode)
-            (evil-mode)
-            (projectile-global-mode)
-            (setf enable-local-variables :safe)))
+(require 'enzo-init)
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
