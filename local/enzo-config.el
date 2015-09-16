@@ -156,6 +156,9 @@
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+(when *is-a-mac*
+  (setq mac-command-modifier 'super))
+
 (global-set-key (kbd "C-s-f") 'toggle-frame-fullscreen)
 ;; For some weird reason C-s-f only means right cmd key!
 (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
