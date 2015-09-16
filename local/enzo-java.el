@@ -1,3 +1,53 @@
+;;; Code:
+
+;;=============================================================================
+;; tomacat
+(require-package 'log4j-mode)
+(defvar tomcat-process nil "Process running tomcat")
+(defvar tomcat-buffer nil "Buffer containing tomcat-process")
+(defvar tomcat-is-running nil "Is tomcat running ?")
+
+(defun tomcat-script ()
+  (let* ((catalina-home (getenv "CATALINA_HOME"))
+         ;; or set `default-directory' variable
+         (catalina-bin (expand-file-name "bin" catalina-home)))
+    (expand-file-name (if (eq system-type 'windows-nt)
+                          "catalina.bat"
+                        "catalina.sh")
+                      catalina-bin))
+  "Script to start or stop tomcat")
+
+(defun tomcat-start ()
+  (switch-to-buffer "*tomcat*")
+  (setq tomcat-buffer (current-buffer))
+  (erase-buffer)
+  (log4j-mode)
+  (setq tomcat-process
+        (start-process "tomcat" (current-buffer)
+                       (tomcat-script) "run"))
+  (setq tomcat-is-running t)
+  (beginning-of-buffer)
+  (message "Tomcat started."))
+
+(defun tomcat-stop ()
+  (message "Stopping Tomcat ...")
+  (save-excursion
+    (switch-to-buffer "*tomcat*")
+    (goto-char (point-max)))
+  (call-process (tomcat-script) nil "*tomcat-stop*" t "stop")
+  (setq tomcat-is-running nil)
+  (kill-buffer "*tomcat-stop*")
+  (message "Tomcat stopped"))
+
+(defun tomcat-toggle()
+  "Stop or start Tomcat"
+  (interactive)
+  (if tomcat-is-running
+      (tomcat-stop)
+    (tomcat-start)))
+
+;;=============================================================================
+
 (require-package 'emacs-eclim)
 (require 'eclim)
 (require 'eclimd)
@@ -22,6 +72,27 @@
   (interactive)
   (projectile-ag "TODO:"))
 
+(defmacro maven-def-task (name command)
+  `(defun ,name ()
+     (interactive)
+     (cd (projectile-project-root))
+     (compile ,command t)))
+
+(maven-def-task maven-compile "mvn compile")
+(maven-def-task maven-clean "mvn clean")
+(maven-def-task maven-package "mvn package")
+(maven-def-task maven-all "mvn clean install")
+
+(defun enzo-mvn-deploy-and-start ()
+  "Deploy war to tomcat."
+  (interactive)
+  (if tomcat-is-running
+      (tomcat-stop))
+  (let* ((project (projectile-project-root))
+         (default-directory (concat (getenv "CATALINA_HOME") "/bin/")))
+    (shell-command (concat "deploy " project))
+    (tomcat-start)))
+
 (require-package 'hydra)
 (require 'hydra)
 (defhydra hydra-eclim (:color teal
@@ -35,7 +106,7 @@ Eclim:
   _g_: Make getter/setter  _fd_: Find Declarations             _c_: Show Corrections
   _o_: Organize Imports    _fr_: Find References               _r_: Buffer Refresh
   _h_: Hierarchy            _R_: Refactor                      _t_: Find Todo
-  _C_: Compile
+  _C_: Compile              _D_: Deploy
 
 Project                            Android
 ─────────────────────────────────────────────────────────
@@ -56,6 +127,7 @@ _k_: Import Proj            _e_: Start Emulator
   ("c"   eclim-problems-correct)
   ("r"   eclim-problems-buffer-refresh)
   ("t"   enzo-projectile-find-todo)
+  ("D"   enzo-mvn-deploy-and-start)
   ("C"   (lambda () (interactive)
            (let ((compilation-read-command nil)
                  (projectile-project-compilation-cmd "mvn clean install"))
@@ -87,7 +159,7 @@ _k_: Import Proj            _e_: Start Emulator
             (setq c-basic-offset 4)))
 
 (after-load 'exec-path-from-shell
-  (dolist (var '("JAVA_HOME"))
+  (dolist (var '("JAVA_HOME"  "CATALINA_HOME"))
     (add-to-list 'exec-path-from-shell-variables var)))
 
-(provide 'enzo-eclim)
+(provide 'enzo-java)

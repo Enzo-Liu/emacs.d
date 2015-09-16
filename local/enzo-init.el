@@ -1,13 +1,15 @@
-;; package --- Filename: init-local.el
+;;; package --- enzo-ac.el ---
+;;
+;; Filename: enzo-ac.el
 ;; Description:
 ;; Author: Liu Enze
 ;; Maintainer:
-;; Created: Thu Nov 27 21:46:50 2014 (+0800)
+;; Created: Wed Dec  3 10:53:06 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Sep 10 06:50:39 2015 (+0800)
-;;           By: Enze Liu
-;;     Update #: 65
+;; Last-Updated: Wed Jul  1 10:42:07 2015 (+0800)
+;;           By: enzo-liu
+;;     Update #: 5
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -43,11 +45,26 @@
 ;;
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
+(require 'enzo-evil)
+(require 'enzo-ac)
+(require 'enzo-java)
+(require 'enzo-helm)
+(require 'enzo-header)
+(require 'enzo-uco)
+(require 'enzo-config)
+(require 'enzo-org)
+(require 'enzo-term)
+(require 'enzo-translate)
 
-(require 'enzo-init)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (auto-fill)
+            (global-evil-leader-mode)
+            (evil-mode)
+            (projectile-global-mode)
+            (setf enable-local-variables :safe)))
 
-(provide 'init-local)
+(provide 'enzo-init)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; init-local.el ends here
+;;; enzo-init.el ends here

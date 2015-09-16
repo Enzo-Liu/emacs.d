@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Tue Sep 15 12:00:03 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 146
+;; Last-Updated: Wed Sep 16 12:42:13 2015 (+0800)
+;;           By: Enze Liu
+;;     Update #: 147
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -55,6 +55,7 @@
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "pbcopy"))
 
+(menu-bar-mode -1)
 (desktop-save-mode 0)
 (setq slime-contribs '(slime-repl slime-fuzzy slime-scratch))
 (auto-save-mode 0)
