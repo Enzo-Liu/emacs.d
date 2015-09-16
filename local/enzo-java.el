@@ -8,14 +8,14 @@
 (defvar tomcat-is-running nil "Is tomcat running ?")
 
 (defun tomcat-script ()
+  "Script to start or stop tomcat"
   (let* ((catalina-home (getenv "CATALINA_HOME"))
          ;; or set `default-directory' variable
          (catalina-bin (expand-file-name "bin" catalina-home)))
     (expand-file-name (if (eq system-type 'windows-nt)
                           "catalina.bat"
                         "catalina.sh")
-                      catalina-bin))
-  "Script to start or stop tomcat")
+                      catalina-bin)))
 
 (defun tomcat-start ()
   (switch-to-buffer "*tomcat*")
