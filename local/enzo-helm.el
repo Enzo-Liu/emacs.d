@@ -68,8 +68,8 @@
       helm-default-external-file-browser         "thunar"
       helm-pdfgrep-default-read-command          "evince --page-label=%p '%f'"
       helm-ff-auto-update-initial-value          t
-      helm-grep-default-command                  "ack-grep -Hn --smart-case --no-group %e %p %f"
-      helm-grep-default-recurse-command          "ack-grep -H --smart-case --no-group %e %p %f"
+      helm-grep-default-command                  "ack -Hn --smart-case --no-group %e %p %f"
+      helm-grep-default-recurse-command          "ack -H --smart-case --no-group %e %p %f"
       helm-reuse-last-window-split-state         t
       helm-always-two-windows                    t
       helm-buffers-favorite-modes                (append helm-buffers-favorite-modes
