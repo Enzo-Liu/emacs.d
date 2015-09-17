@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Wed Sep 16 12:42:13 2015 (+0800)
+;; Last-Updated: Thu Sep 17 17:57:19 2015 (+0800)
 ;;           By: Enze Liu
-;;     Update #: 147
+;;     Update #: 152
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -189,13 +189,6 @@
 ;;             (setq tab-width 4)))
 ;;
 ;;
-(require-package 'color-theme-solarized)
-(add-hook 'after-make-frame-functions
-          (lambda (frame)
-            (let ((mode (if (display-graphic-p frame) 'light 'light)))
-              (set-frame-parameter frame 'background-mode mode)
-              (set-terminal-parameter frame 'background-mode mode))
-            (enable-theme 'solarized)))
 
 (require 'rinari)
 (add-hook 'after-init-hook
@@ -214,10 +207,6 @@
 (require 'yasnippet)
 (yas-global-mode)
 (setq-default yas-prompt-functions '(yas-ido-prompt yas-dropdown-prompt))
-
-(require-package 'powerline)
-(require 'powerline)
-(powerline-center-evil-theme)
 
 (require-package 'haskell-snippets)
 (require 'haskell-snippets)

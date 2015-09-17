@@ -52,6 +52,7 @@
 (require 'eclim)
 (require 'eclimd)
 
+
 (if (eq system-type 'darwin)
     (custom-set-variables
      '(eclim-eclipse-dirs '("/Users/liuenze/work_soft/Eclipse.app/Contents/Eclipse"))
@@ -156,6 +157,7 @@ _k_: Import Proj            _e_: Start Emulator
             (require 'ac-emacs-eclim-source)
             (ac-emacs-eclim-config)
             (eclim-mode t)
+            (eclim-problems-show-errors)
             (setq c-basic-offset 4)))
 
 (after-load 'exec-path-from-shell
