@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Thu Sep 17 17:57:19 2015 (+0800)
+;; Last-Updated: Fri Sep 18 17:41:23 2015 (+0800)
 ;;           By: Enze Liu
-;;     Update #: 152
+;;     Update #: 161
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -159,6 +159,9 @@
 (when *is-a-mac*
   (setq mac-command-modifier 'super))
 
+(define-key ac-complete-mode-map "\C-n" 'ac-next)
+(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+
 (global-set-key (kbd "C-s-f") 'toggle-frame-fullscreen)
 ;; For some weird reason C-s-f only means right cmd key!
 (global-set-key (kbd "<C-s-268632070>") 'toggle-frame-fullscreen)
@@ -213,7 +216,12 @@
 
 (add-hook 'prog-mode-hook (lambda ()
                             (turn-off-auto-fill)))
-
+;; (load-theme 'sanityinc-solarized-dark t)
+;; (add-hook 'after-make-frame-functions
+;;           (lambda (frame)
+;;             (let ((color-theme-is-global nil))
+;;               (with-selected-frame frame
+;;                 (unless (display-graphic-p frame) (load-theme 'sanityinc-solarized-light t))))))
 
 (provide 'enzo-config)
 
