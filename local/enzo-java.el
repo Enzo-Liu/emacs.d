@@ -148,14 +148,50 @@ _k_: Import Proj            _e_: Start Emulator
 ;; (require-package 'sbt-mode)
 ;; (require-package 'scala-mode2)
 
+(setq-local expand-on-one-candidate t)
+
+;; not auto expand for only one candidate
+(cl-defun auto-complete-1 (&key sources (triggered 'command))
+  (let ((menu-live (ac-menu-live-p))
+        (inline-live (ac-inline-live-p))
+        started)
+    (ac-abort)
+    (let ((ac-sources (or sources ac-sources)))
+      (if (or ac-show-menu-immediately-on-auto-complete
+              inline-live)
+          (setq ac-show-menu t))
+      (setq started (ac-start :triggered triggered)))
+    (when (ac-update-greedy t)
+      ;; TODO Not to cause inline completion to be disrupted.
+      (if (ac-inline-live-p)
+          (ac-inline-hide))
+      ;; Not to expand when it is first time to complete
+      (when (and (or (and (not ac-expand-on-auto-complete)
+                          (> (length ac-candidates) 1)
+                          (not menu-live))
+                     (not (let ((ac-common-part ac-whole-common-part))
+                            (when expand-on-one-candidate (ac-expand-common)))))
+                 ac-use-fuzzy
+                 (null ac-candidates))
+        (ac-fuzzy-complete)))
+    started))
+
+(ac-define-source enzo-eclim
+  '((candidates . eclim--completion-candidates)
+    (action . ac-emacs-eclim-action)
+    (prefix . c-dot)
+    (requires . 0)
+    (document . eclim--completion-documentation)
+    (cache)
+    (selection-face . ac-emacs-eclim-selection-face)
+    (candidate-face . ac-emacs-eclim-candidate-face)
+    (symbol . "f")))
+
 (add-hook 'java-mode-hook
           (lambda ()
-            ;; regular auto-complete initialization
-            (require 'auto-complete-config)
-            (ac-config-default)
-            ;; add the emacs-eclim source
             (require 'ac-emacs-eclim-source)
-            (ac-emacs-eclim-config)
+            (setq ac-sources '(ac-source-emacs-eclim ac-source-enzo-eclim)
+                  expand-on-one-candidate nil)
             (eclim-mode t)
             (eclim-problems-show-errors)
             (setq c-basic-offset 4)))

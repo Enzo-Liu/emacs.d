@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 10:46:16 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Sep 14 18:56:11 2015 (+0800)
+;; Last-Updated: Fri Sep 18 14:13:29 2015 (+0800)
 ;;           By: Enze Liu
-;;     Update #: 13
+;;     Update #: 16
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -44,7 +44,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
-(require 'init-elpa)
 (require-package 'evil)
 (require-package 'evil-leader)
 
@@ -60,7 +59,7 @@
   "y" 'browse-kill-ring
   "u" 'uco
   "n" 'helm-projectile-find-file
-  "q" 'save-buffers-kill-terminal
+  "q" 'delete-frame
   "f" 'indent-buffer
   "t" 'org-show-todo-tree
   "a" 'show-all
