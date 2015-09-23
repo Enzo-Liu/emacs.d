@@ -17,22 +17,30 @@
                         "catalina.sh")
                       catalina-bin)))
 
+(defun switch-to-window-buffer (buffer)
+  (let ((buffer-window (get-buffer-window buffer)))
+    (if buffer-window
+        (progn
+          (select-window buffer-window)
+          (switch-to-buffer buffer))
+      (switch-to-buffer-other-window buffer))))
+
 (defun tomcat-start ()
-  (switch-to-buffer "*tomcat*")
   (setq tomcat-buffer (current-buffer))
+  (switch-to-window-buffer "*tomcat*")
   (erase-buffer)
   (log4j-mode)
   (setq tomcat-process
         (start-process "tomcat" (current-buffer)
                        (tomcat-script) "run"))
   (setq tomcat-is-running t)
-  (beginning-of-buffer)
+  (goto-char (point-max))
   (message "Tomcat started."))
 
 (defun tomcat-stop ()
   (message "Stopping Tomcat ...")
   (save-excursion
-    (switch-to-buffer "*tomcat*")
+    (switch-to-window-buffer "*tomcat*")
     (goto-char (point-max)))
   (call-process (tomcat-script) nil "*tomcat-stop*" t "stop")
   (setq tomcat-is-running nil)
