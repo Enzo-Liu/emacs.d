@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Sep 18 17:41:23 2015 (+0800)
-;;           By: Enze Liu
-;;     Update #: 161
+;; Last-Updated: Thu Nov 12 21:37:30 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 162
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -222,6 +222,11 @@
 ;;             (let ((color-theme-is-global nil))
 ;;               (with-selected-frame frame
 ;;                 (unless (display-graphic-p frame) (load-theme 'sanityinc-solarized-light t))))))
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 (provide 'enzo-config)
 
