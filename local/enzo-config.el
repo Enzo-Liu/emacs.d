@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Thu Nov 12 21:37:30 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 162
+;; Last-Updated: Fri Nov 13 11:24:59 2015 (+0800)
+;;           By: enzo
+;;     Update #: 171
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -59,9 +59,7 @@
 (desktop-save-mode 0)
 (setq slime-contribs '(slime-repl slime-fuzzy slime-scratch))
 (auto-save-mode 0)
-(setq auto-save-default nil)
 (setq require-final-newline t)
-(setq-default make-backup-files nil)
 (setq scroll-margin 3
       scroll-conservatively 10000)
 (setq-default major-mode 'text-mode)
@@ -222,11 +220,16 @@
 ;;             (let ((color-theme-is-global nil))
 ;;               (with-selected-frame frame
 ;;                 (unless (display-graphic-p frame) (load-theme 'sanityinc-solarized-light t))))))
-
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+(setq
+ backup-by-copying t      ; don't clobber symlinks
+ backup-directory-alist
+ `((".*" . ,temporary-file-directory))
+ delete-old-versions t
+ auto-save-file-name-transforms
+ `((".*" ,temporary-file-directory t))
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t)
 
 (provide 'enzo-config)
 

@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sun Jul 26 06:58:37 2015 (+0800)
-;;           By: enzo-liu
-;;     Update #: 94
+;; Last-Updated: Tue Nov 24 18:17:28 2015 (+0800)
+;;           By: enzo
+;;     Update #: 107
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -51,6 +51,8 @@
   "Setup TAB For Org mode in Evil."
   (define-key evil-normal-state-map (kbd "TAB") 'org-cycle))
 
+(add-to-list 'safe-local-variable-values '(org-beamer-outline-frame-title . "目录"))
+
 (require 'org)
 (require 'ox)
 (setq org-src-fontify-natively t)
@@ -62,10 +64,11 @@
   '("beamer"
     "\\documentclass[presentation]{beamer}
 \\usepackage[no-math]{fontspec}
-\\usepackage{xeCJK}
+\\usepackage[BoldFont,SlantFont,AutoFakeBold=true,AutoFakeSlant=true]{xeCJK}
 \\setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
 \\setCJKsansfont[BoldFont=FandolHei-Bold.otf]{FandolHei-Regular.otf}
 \\setCJKmonofont{FandolFang-Regular.otf}
+\\usefonttheme[stillsansseriflarge,stillsansserifsmall]{serif}
 \\usepackage{graphicx}
 \\usepackage{xcolor}
 \\usepackage{listings}
