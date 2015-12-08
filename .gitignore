@@ -33,6 +33,7 @@ site-lisp/package/
 /emms/
 /.smex-items
 /image-dired/
+*.eld
 /eshell
 /.cask/
 /.sx/
