@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Mon Dec  7 19:24:05 2015 (+0800)
+;; Last-Updated: Tue Dec  8 17:47:55 2015 (+0800)
 ;;           By: enzo
-;;     Update #: 175
+;;     Update #: 176
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -231,6 +231,7 @@
  kept-old-versions 2
  version-control t)
 
+(require-package 'web-mode)
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.ftl\\'" . web-mode))
 (setq web-mode-engines-alist
