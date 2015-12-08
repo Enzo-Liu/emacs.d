@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Nov 13 11:24:59 2015 (+0800)
+;; Last-Updated: Mon Dec  7 19:24:05 2015 (+0800)
 ;;           By: enzo
-;;     Update #: 171
+;;     Update #: 175
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -230,6 +230,12 @@
  kept-new-versions 6
  kept-old-versions 2
  version-control t)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.ftl\\'" . web-mode))
+(setq web-mode-engines-alist
+      '(("freemarker"    . "\\.ftl\\'")
+        ))
 
 (provide 'enzo-config)
 
