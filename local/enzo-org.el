@@ -7,15 +7,16 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Tue Nov 24 18:17:28 2015 (+0800)
+;; Last-Updated: Mon Dec 28 10:53:33 2015 (+0800)
 ;;           By: enzo
-;;     Update #: 107
+;;     Update #: 110
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
 ;; Compatibility:
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;;
 ;;; Commentary:
 ;;
@@ -180,7 +181,9 @@
 (setq org-confirm-babel-evaluate nil)
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((lisp . t)))
+ '((lisp . t) (plantuml . t)))
+(setf plantuml-jar-path (expand-file-name "plantuml.jar" (file-name-directory user-init-file)))
+(setq org-plantuml-jar-path plantuml-jar-path)
 (setq org-descriptive-links nil)
 
 ;; org 自动换行
