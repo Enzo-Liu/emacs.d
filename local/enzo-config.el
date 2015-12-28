@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Tue Dec  8 17:47:55 2015 (+0800)
-;;           By: enzo
-;;     Update #: 176
+;; Last-Updated: Fri Dec 25 23:34:26 2015 (+0800)
+;;           By: Liu Enze
+;;     Update #: 177
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -214,6 +214,12 @@
 
 (add-hook 'prog-mode-hook (lambda ()
                             (turn-off-auto-fill)))
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+            (let ((mode (if (display-graphic-p frame) 'dark 'dark)))
+              (set-frame-parameter frame 'background-mode mode)
+              (set-terminal-parameter frame 'background-mode mode))
+            (enable-theme 'solarized)))
 ;; (load-theme 'sanityinc-solarized-dark t)
 ;; (add-hook 'after-make-frame-functions
 ;;           (lambda (frame)
