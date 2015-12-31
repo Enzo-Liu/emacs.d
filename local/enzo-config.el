@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Dec 25 23:34:26 2015 (+0800)
-;;           By: Liu Enze
-;;     Update #: 177
+;; Last-Updated: Thu Dec 31 11:00:31 2015 (+0800)
+;;           By: enzo
+;;     Update #: 178
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -214,6 +214,7 @@
 
 (add-hook 'prog-mode-hook (lambda ()
                             (turn-off-auto-fill)))
+(require-package 'color-theme-solarized)
 (add-hook 'after-make-frame-functions
           (lambda (frame)
             (let ((mode (if (display-graphic-p frame) 'dark 'dark)))
