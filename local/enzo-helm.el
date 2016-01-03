@@ -1,3 +1,4 @@
+(require-package 'helm)
 (require 'helm-config)
 ;;; Enable Modes (This is loading nearly everything).
 ;;
@@ -8,6 +9,7 @@
 ;; (helm-autoresize-mode 1)
 (helm-push-mark-mode 1)
 
+(require-package 'projectile)
 (require 'projectile)
 (require-package 'helm-projectile)
 (require 'helm-projectile)

@@ -48,6 +48,7 @@
 (require-package 'google-translate)
 (require-package 'popup)
 (require-package 'chinese-word-at-point)
+(require-package 'names)
 
 (require 'google-translate)
 (require 'popup)
