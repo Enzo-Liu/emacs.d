@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Jan  1 22:35:15 2016 (+0800)
+;; Last-Updated: Tue Jan  5 22:31:14 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 181
+;;     Update #: 213
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -44,6 +44,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Code:
+
+(when (featurep 'aquamacs)
+  (setq ns-command-modifier 'super
+        ns-option-modifier 'meta
+        ns-use-mac-modifier-symbols  nil
+        not-this-window 1)
+  (add-hook 'after-make-frame-functions (lambda (frame)
+                                          (tabbar-mode -1)))
+  (global-set-key (kbd "<C-s-key-268632070>") 'toggle-frame-fullscreen)
+  )
 
 (defun indent-buffer ()
   "Use this to indent the whole file."
