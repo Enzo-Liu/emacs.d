@@ -1,15 +1,15 @@
-;;; package --- enzo-ac.el ---
+;;; enzo-blog.el ---
 ;;
-;; Filename: enzo-ac.el
+;; Filename: enzo-blog.el
 ;; Description:
 ;; Author: Liu Enze
 ;; Maintainer:
-;; Created: Wed Dec  3 10:53:06 2014 (+0800)
+;; Created: Mon Feb  1 22:23:40 2016 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Feb  1 22:24:14 2016 (+0800)
+;; Last-Updated: Wed Feb  3 15:50:26 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 6
+;;     Update #: 17
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -45,27 +45,21 @@
 ;;
 ;;; Code:
 
-(require 'enzo-evil)
-(require 'enzo-ac)
-(require 'enzo-java)
-(require 'enzo-helm)
-(require 'enzo-header)
-(require 'enzo-uco)
-(require 'enzo-config)
-(require 'enzo-org)
-(require 'enzo-term)
-(require 'enzo-translate)
-(require 'enzo-blog)
+(require-package 'org-page)
+(require 'org-page)
+(setq op/repository-directory "/Users/enzo/Documents/blog/")
+(setq op/site-domain "http://blog.enzotech.in/")
+;;; for commenting, you can choose either disqus or duoshuo
+(setq op/personal-disqus-shortname "enzo-liu")
+;;; the configuration below are optional
+;;;(setq op/personal-google-analytics-id "your_google_analytics_id")
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (auto-fill)
-            (global-evil-leader-mode)
-            (evil-mode)
-            (projectile-global-mode)
-            (setf enable-local-variables :safe)))
+(setq op/site-main-title "enzo's note book")
+(setq op/site-sub-title "M-x (sketch for random ideas)")
+(setq op/personal-github-link "https://github.com/Enzo-Liu")
+(setq op/category-ignore-list '("work"))
 
-(provide 'enzo-init)
+(provide 'enzo-blog)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;; enzo-init.el ends here
+;;; enzo-blog.el ends here
