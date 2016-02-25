@@ -156,7 +156,7 @@ _k_: Import Proj            _e_: Start Emulator
 ;; (require-package 'sbt-mode)
 ;; (require-package 'scala-mode2)
 
-(setq-local expand-on-one-candidate t)
+(setq-default expand-on-one-candidate t)
 
 ;; not auto expand for only one candidate
 (cl-defun auto-complete-1 (&key sources (triggered 'command))

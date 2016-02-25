@@ -7,9 +7,9 @@
 ;; Created: Mon Feb  1 22:23:40 2016 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Feb  3 15:50:26 2016 (+0800)
-;;           By: Liu Enze
-;;     Update #: 17
+;; Last-Updated: Sun Feb 14 09:37:12 2016 (+0800)
+;;           By: enzo
+;;     Update #: 21
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -47,7 +47,7 @@
 
 (require-package 'org-page)
 (require 'org-page)
-(setq op/repository-directory "/Users/enzo/Documents/blog/")
+(setq op/repository-directory (substitute-in-file-name "$HOME/Documents/blog/"))
 (setq op/site-domain "http://blog.enzotech.in/")
 ;;; for commenting, you can choose either disqus or duoshuo
 (setq op/personal-disqus-shortname "enzo-liu")
