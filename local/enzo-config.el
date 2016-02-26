@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Tue Feb 23 16:50:41 2016 (+0800)
+;; Last-Updated: Fri Feb 26 11:44:19 2016 (+0800)
 ;;           By: enzo
-;;     Update #: 217
+;;     Update #: 227
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -258,6 +258,11 @@
 (setq web-mode-engines-alist
       '(("freemarker"    . "\\.ftl\\'")
         ))
+
+(require-package 'powerline)
+
+(require 'powerline)
+(powerline-center-evil-theme)
 
 (provide 'enzo-config)
 
