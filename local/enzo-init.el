@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 10:53:06 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Mon Feb  1 22:24:14 2016 (+0800)
+;; Last-Updated: Tue Apr 26 21:35:02 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 6
+;;     Update #: 7
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -46,7 +46,6 @@
 ;;; Code:
 
 (require 'enzo-evil)
-(require 'enzo-ac)
 (require 'enzo-java)
 (require 'enzo-helm)
 (require 'enzo-header)

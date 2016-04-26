@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Feb 26 11:44:19 2016 (+0800)
-;;           By: enzo
-;;     Update #: 227
+;; Last-Updated: Tue Apr 26 21:35:28 2016 (+0800)
+;;           By: Liu Enze
+;;     Update #: 228
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -166,9 +166,6 @@
 
 (when *is-a-mac*
   (setq mac-command-modifier 'super))
-
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
 
 (global-set-key (kbd "C-s-f") 'toggle-frame-fullscreen)
 ;; For some weird reason C-s-f only means right cmd key!
