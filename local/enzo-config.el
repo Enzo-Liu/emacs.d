@@ -7,8 +7,8 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Tue Apr 26 21:35:28 2016 (+0800)
-;;           By: Liu Enze
+;; Last-Updated: Fri Mar 18 00:39:30 2016 (+0800)
+;;           By: enzo
 ;;     Update #: 228
 ;; URL:
 ;; Doc URL:
@@ -221,17 +221,7 @@
 
 (add-hook 'prog-mode-hook (lambda ()
                             (turn-off-auto-fill)))
-(require-package 'color-theme-solarized)
-(require 'color-theme)
-(require 'color-theme-solarized)
-(color-theme-solarized)
-(setq solarized-termcolors '256)
-(add-hook 'after-make-frame-functions
-          (lambda (frame)
-            (let ((mode (if (display-graphic-p frame) 'dark 'dark)))
-              (set-frame-parameter frame 'background-mode mode)
-              (set-terminal-parameter frame 'background-mode mode))
-            (enable-theme 'solarized)))
+
 ;; (load-theme 'sanityinc-solarized-dark t)
 ;; (add-hook 'after-make-frame-functions
 ;;           (lambda (frame)
