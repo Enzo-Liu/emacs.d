@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Mar 18 00:39:30 2016 (+0800)
+;; Last-Updated: Tue May  3 14:09:37 2016 (+0800)
 ;;           By: enzo
-;;     Update #: 228
+;;     Update #: 229
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -250,6 +250,9 @@
 
 (require 'powerline)
 (powerline-center-evil-theme)
+
+(eval-after-load 'company
+  '(push 'company-robe company-backends))
 
 (provide 'enzo-config)
 
