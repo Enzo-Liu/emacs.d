@@ -171,8 +171,8 @@ _k_: Import Proj            _e_: Start Emulator
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 (require-package 'sbt-mode)
 (require 'sbt-mode)
-(require-package 'scala-mode2)
-(require 'scala-mode2)
+;(require-package 'scala-mode2)
+;(require 'scala-mode2)
 
 
 ;; OPTIONAL
