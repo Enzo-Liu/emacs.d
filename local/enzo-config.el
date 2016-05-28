@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Tue May  3 14:09:37 2016 (+0800)
-;;           By: enzo
-;;     Update #: 229
+;; Last-Updated: Sun May 22 12:51:47 2016 (+0800)
+;;           By: Liu Enze
+;;     Update #: 230
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -237,6 +237,7 @@
  `((".*" ,temporary-file-directory t))
  kept-new-versions 6
  kept-old-versions 2
+ initial-major-mode 'emacs-lisp-mode
  version-control t)
 
 (require-package 'web-mode)
