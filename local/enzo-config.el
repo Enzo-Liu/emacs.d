@@ -254,9 +254,6 @@
 
 (eval-after-load 'company
   '(push 'company-robe company-backends))
-(require-package 'stack-mode)
-(require 'stack-mode)
-(add-hook 'haskell-mode-hook 'stack-mode)
 
 (provide 'enzo-config)
 
