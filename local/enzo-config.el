@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sun May 22 12:51:47 2016 (+0800)
+;; Last-Updated: Sat May 28 10:23:52 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 230
+;;     Update #: 231
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -254,6 +254,9 @@
 
 (eval-after-load 'company
   '(push 'company-robe company-backends))
+(require-package 'stack-mode)
+(require 'stack-mode)
+(add-hook 'haskell-mode-hook 'stack-mode)
 
 (provide 'enzo-config)
 
