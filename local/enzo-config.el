@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sat May 28 10:23:52 2016 (+0800)
+;; Last-Updated: Sat May 28 10:48:40 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 231
+;;     Update #: 237
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -254,6 +254,12 @@
 
 (eval-after-load 'company
   '(push 'company-robe company-backends))
+
+(setq haskell-process-type 'ghci)
+(setq haskell-process-path-ghci "stack")
+(setq haskell-process-use-ghci t)
+(setq haskell-process-args-ghci '("ghci" "--test" "--no-load"))
+
 
 (provide 'enzo-config)
 
