@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Thu Jun  9 08:14:23 2016 (+0800)
+;; Last-Updated: Thu Jun  9 08:26:03 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 243
+;;     Update #: 244
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -84,13 +84,13 @@
   "Setup font for graphic display with Font SIZE and WEIGHT."
   (when (display-graphic-p)
     ;; default Latin font (e.g. Consolas)
-    (set-face-attribute 'default nil :family "Sauce Code Powerline" :weight 'light)
+    (set-face-attribute 'default nil :family "Sauce Code Powerline" :weight 'normal)
 
     ;; default font size (point * 10)
     ;; WARNING!  Depending on the default font,
     ;; if the size is not supported very well, the frame will be clipped
     ;; so that the beginning of the buffer may not be visible correctly.
-    (set-face-attribute 'default nil :height size :weight 'light)
+    (set-face-attribute 'default nil :height size :weight 'normal)
 
     ;; use specific font for Korean charset.
     ;; if you want to use different font size for specific charset,
