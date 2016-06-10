@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Thu Jun  9 08:26:03 2016 (+0800)
+;; Last-Updated: Fri Jun 10 08:56:41 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 244
+;;     Update #: 248
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -250,11 +250,10 @@
 (eval-after-load 'company
   '(push 'company-robe company-backends))
 
-(setq haskell-process-type 'ghci)
-(setq haskell-process-path-ghci "stack")
+(setq haskell-process-type 'stack-ghci)
+(setq haskell-process-path-stack "stack")
 (setq haskell-process-use-ghci t)
-(setq haskell-process-args-ghci '("ghci" "--test" "--no-load"))
-
+(setq haskell-process-args-stack-ghci '("ghci" "--test" "--no-load"))
 
 (provide 'enzo-config)
 
