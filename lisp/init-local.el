@@ -5,9 +5,9 @@
 ;; Created: Thu Nov 27 21:46:50 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Sep 10 06:50:39 2015 (+0800)
-;;           By: Enze Liu
-;;     Update #: 65
+;; Last-Updated: Sun Jun 12 23:50:55 2016 (+0800)
+;;           By: Liu Enze
+;;     Update #: 70
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -44,107 +44,7 @@
 ;;; Code:
 
 (add-to-list 'load-path (expand-file-name "local" user-emacs-directory))
-
 (require 'enzo-init)
-
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-(defun uco (name)
-  "Use this to init the ${NAME} programming for usacontext."
-  (interactive "sinput the program name you want to open or create: ")
-  (let* ((prefix `((t . "~") (nil . "~/host")))
-         (path (concat (cdr (assoc *is-a-mac* prefix)) "/Work/git/usacontext/" ))
-         (folder (concat path name "/")))
-    (unless (file-exists-p folder)
-      (make-directory folder)
-      (shell-command (concat  "cp " path  "sample/sample.cpp " folder name
-                              ".cpp && sed -i 's/#{name}/" name "/' " folder "*.cpp" )))
-    (uco-display folder name)))
-
-(defun uco-display (folder name)
-  "FOLDER: the file location.  NAME: the file name."
-  (let ((uco-cpp (concat folder name ".cpp"))
-        (uco-pro (concat folder name ".pr"))
-        (uco-in (concat folder name ".in"))
-        (uco-out (concat folder name ".out")))
-    (make-frame-command)
-    (switch-to-buffer (find-file-noselect uco-cpp))
-    (set-window-buffer (split-window-horizontally) (find-file-noselect uco-pro))
-    (windmove-right)
-    (set-window-buffer (split-window-below) (find-file-noselect uco-in))
-    (windmove-down)
-    (set-window-buffer (split-window-right) (find-file-noselect uco-out))
-    (windmove-left)))
-
-(autoload 'org-present "org-present" nil t)
-
-(add-hook 'org-present-mode-hook
-          (lambda ()
-            (org-present-big)
-            (org-display-inline-images)))
-
-(add-hook 'org-present-mode-quit-hook
-          (lambda ()
-            (org-present-small)
-            (org-remove-inline-images)))
-
-;;指针不闪，不恍花眼睛。
-(blink-cursor-mode -1)
-
-;; org 自动换行
-(add-hook 'org-mode-hook
-          (lambda ()
-            (toggle-truncate-lines 0)
-            (setupEvilOrg)))
-
-(when (featurep 'ns)
-  (defun ns-raise-emacs ()
-    "Raise Emacs."
-    (ns-do-applescript "tell application \"Emacs\" to activate"))
-
-  (defun ns-raise-emacs-with-frame (frame)
-    "Raise Emacs and select the provided frame."
-    (with-selected-frame frame
-      (when (display-graphic-p)
-        (ns-raise-emacs))))
-
-  (add-hook 'after-make-frame-functions 'ns-raise-emacs-with-frame)
-
-  (when (display-graphic-p)
-    (ns-raise-emacs)))
-
-(when (eq system-type 'darwin)
-
-  ;; default Latin font (e.g. Consolas)
-  (set-face-attribute 'default nil :family "Sauce Code Powerline")
-
-  ;; default font size (point * 10)
-  ;;
-  ;; WARNING!  Depending on the default font,
-  ;; if the size is not supported very well, the frame will be clipped
-  ;; so that the beginning of the buffer may not be visible correctly.
-  (set-face-attribute 'default nil :height 140 :weight 'normal)
-
-  ;; use specific font for Korean charset.
-  ;; if you want to use different font size for specific charset,
-  ;; add :size POINT-SIZE in the font-spec.
-  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-  (set-fontset-font t 'chinese-gb2312 (font-spec :name "Hiragino Sans GB"))
-
-  ;; you may want to add different for other charset in this way.
-  )
-
-(require 'header2)
-(autoload 'auto-update-file-header "header2")
-(add-hook 'write-file-hooks 'auto-update-file-header)
-(autoload 'auto-make-header "header2")
-(defun enzo-make-header ()
-  (auto-make-header)
-  (auto-update-file-header))
-(add-hook 'emacs-lisp-mode-hook 'enzo-make-header)
-(add-hook 'c-mode-common-hook   'enzo-make-header)
-(add-hook 'lisp-mode-hook 'enzo-make-header)
-
 (provide 'init-local)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
