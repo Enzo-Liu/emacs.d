@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Jun 10 08:56:41 2016 (+0800)
+;; Last-Updated: Fri Jun 17 22:42:15 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 248
+;;     Update #: 250
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -253,7 +253,7 @@
 (setq haskell-process-type 'stack-ghci)
 (setq haskell-process-path-stack "stack")
 (setq haskell-process-use-ghci t)
-(setq haskell-process-args-stack-ghci '("ghci" "--test" "--no-load"))
+(setq haskell-process-args-stack-ghci '("--test" "--no-load" "--with-ghc" "intero"))
 
 (provide 'enzo-config)
 
