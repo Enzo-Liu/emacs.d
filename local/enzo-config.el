@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Fri Jun 17 22:42:15 2016 (+0800)
+;; Last-Updated: Sat Jun 18 14:06:26 2016 (+0800)
 ;;           By: Liu Enze
-;;     Update #: 250
+;;     Update #: 251
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -147,7 +147,7 @@
   (let* ((otherCmdMap `(("cpp" . "&& ./a.out")))
          (suffixMap `(("py" . "python") ("rb" . "ruby") ("js" . "node") ("cpp" . "g++")
                       ("sh" . "bash") ("ml" . "ocaml") ("vbs" . "cscript") ("c" . "c")
-                      ("hs" . "runghc") ("c++" . "c")))
+                      ("hs" . "stack --install-ghc runghc") ("c++" . "c")))
          (fName (buffer-file-name))
          (fSuffix (file-name-extension fName))
          (progName (cdr (assoc fSuffix suffixMap)))
