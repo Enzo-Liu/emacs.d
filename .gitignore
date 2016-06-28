@@ -47,3 +47,4 @@ site-lisp/package/
 abbrev_defs
 eww-bookmarks
 ensime/
+/projectile-bookmarks.eld
