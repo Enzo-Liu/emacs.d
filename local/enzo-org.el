@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jun 29 18:33:55 2016 (+0800)
+;; Last-Updated: Wed Jun 29 18:44:36 2016 (+0800)
 ;;           By: enzo
-;;     Update #: 114
+;;     Update #: 118
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -133,9 +133,11 @@
 \\usepackage{wasysym}
 \\usepackage{amssymb}
 \\usepackage{hyperref}
+\\usepackage{parskip}
+\\setlength{\\parindent}{15pt}
+\\usepackage{indentfirst}
 \\geometry{a4paper, textwidth=6.5in, textheight=10in,
             marginparsep=7pt, marginparwidth=.6in}
-\\setlength{\\parindent}{0in}
 \\tolerance=1000
 \\pagestyle{empty}
      [NO-DEFAULT-PACKAGES]
