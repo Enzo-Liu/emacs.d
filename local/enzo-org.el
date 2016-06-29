@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:12:01 2014 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Wed Jun 29 18:44:36 2016 (+0800)
-;;           By: enzo
-;;     Update #: 118
+;; Last-Updated: Wed Jun 29 20:29:49 2016 (+0800)
+;;           By: Liu Enze
+;;     Update #: 119
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -176,6 +176,8 @@
              ("keepspaces" "true")
              ("showstringspaces" "false")
              ("numbers" "left")
+             ("xleftmargin" ".25in")
+             ("xrightmargin" ".25in")
              ("numberstyle" "\\tiny")))
      (require 'ox-beamer)
      (dolist (class (list *article* *book* *beamer*))

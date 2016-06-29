@@ -7,9 +7,9 @@
 ;; Created: Mon Feb  1 22:23:40 2016 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Sun Feb 14 09:37:12 2016 (+0800)
-;;           By: enzo
-;;     Update #: 21
+;; Last-Updated: Thu Jun 30 07:45:39 2016 (+0800)
+;;           By: enzo liu
+;;     Update #: 23
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -45,10 +45,13 @@
 ;;
 ;;; Code:
 
+(setf user-full-name "enzo liu")
+(setf user-mail-address "liuenze6516@gmail.com")
+
 (require-package 'org-page)
 (require 'org-page)
 (setq op/repository-directory (substitute-in-file-name "$HOME/Documents/blog/"))
-(setq op/site-domain "http://blog.enzotech.in/")
+(setq op/site-domain "https://blog.enzo.cc/")
 ;;; for commenting, you can choose either disqus or duoshuo
 (setq op/personal-disqus-shortname "enzo-liu")
 ;;; the configuration below are optional
