@@ -7,9 +7,9 @@
 ;; Created: Mon Feb  1 22:23:40 2016 (+0800)
 ;; Version:
 ;; Package-Requires: ()
-;; Last-Updated: Thu Jun 30 07:45:39 2016 (+0800)
+;; Last-Updated: Fri Jul 15 12:03:27 2016 (+0800)
 ;;           By: enzo liu
-;;     Update #: 23
+;;     Update #: 24
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -60,7 +60,7 @@
 (setq op/site-main-title "enzo's note book")
 (setq op/site-sub-title "M-x (sketch for random ideas)")
 (setq op/personal-github-link "https://github.com/Enzo-Liu")
-(setq op/category-ignore-list '("work"))
+(setq op/category-ignore-list '("work" "draft"))
 
 (provide 'enzo-blog)
 
