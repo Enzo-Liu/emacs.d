@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sat Jun 18 14:06:26 2016 (+0800)
-;;           By: Liu Enze
-;;     Update #: 251
+;; Last-Updated: Sat Jul 23 13:18:24 2016 (+0800)
+;;           By: enzo liu
+;;     Update #: 252
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -254,6 +254,10 @@
 (setq haskell-process-path-stack "stack")
 (setq haskell-process-use-ghci t)
 (setq haskell-process-args-stack-ghci '("--test" "--no-load" "--with-ghc" "intero"))
+
+
+(require 'disable-mouse)
+(global-disable-mouse-mode)
 
 (provide 'enzo-config)
 
