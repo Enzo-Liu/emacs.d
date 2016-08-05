@@ -255,6 +255,10 @@
 (setq haskell-process-use-ghci t)
 (setq haskell-process-args-stack-ghci '("--test" "--no-load" "--with-ghc" "intero"))
 
+
+(require 'disable-mouse)
+(global-disable-mouse-mode)
+
 (provide 'enzo-config)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
