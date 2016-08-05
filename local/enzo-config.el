@@ -7,9 +7,9 @@
 ;; Created: Wed Dec  3 11:07:20 2014 (+0800)
 ;; Version: 1.0-alpha
 ;; Package-Requires: ()
-;; Last-Updated: Sat Jun 18 14:06:26 2016 (+0800)
-;;           By: Liu Enze
-;;     Update #: 251
+;; Last-Updated: Fri Aug  5 14:36:55 2016 (+0800)
+;;           By: enzo liu
+;;     Update #: 253
 ;; URL:
 ;; Doc URL:
 ;; Keywords:
@@ -113,7 +113,7 @@
 (defun fedora-set-font (frame)
   (with-selected-frame frame
     ;;; (95 1.3)
-    (setup-font 130 "WenQuanYi Zen Hei" 1.2)))
+    (setup-font 160 "WenQuanYi Zen Hei" 1.25)))
 
 (when (eq system-type 'darwin)
   (when (featurep 'ns)
